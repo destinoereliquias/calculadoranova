@@ -191,17 +191,6 @@ body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);c
 </nav>
 
 <script>
-/* 
-   CONFIG - VALORES REAIS (fonte: planilha da calculadora antiga)
-   Aliquota por CNPJ: LTDA 10% | FERREIRA 11% | RAV 10% | VIVI 4%
-   PRESENCIAL: comissao 3,29% (custo da maquina de pagamento)
-   INSUMOS: soma R$1 (ate 300g) ou R$2 (acima) ao CUSTO (despesa)
-   Magalu: taxa R$2 quando preco ACIMA de 9,99 (igual antiga)
-   RD: frete = frete_do_peso x comissao 19% (igual antiga)
-   ML: tabela NOVA do artigo oficial (substitui taxas fixas antigas)
-   Ordem das faixas de peso (fretes acima de 79):
-   [ate300G, 300a500G, 500Ga1KG, 1a2KG, 2a5KG, 5a9KG, 9a13KG, 13a17KG, 17a23KG, 23a30KG]
-    */
 var CONFIG = {
   aliq: {
     "LOJA DA VIVI LTDA": 0.10,
@@ -226,11 +215,6 @@ var CONFIG = {
   }
 };
 
-/* 
-   TABELA NOVA DO MERCADO LIVRE (artigo oficial de vendedores)
-   Colunas de preco: ate 18,99 | 19-48,99 | 49-78,99 | 79-99,99 |
-   100-119,99 | 120-149,99 | 150-199,99 | 200+
-    */
 var ENVIO_ML = {
   faixasPreco: [
     { limite: 18.99 }, { limite: 48.99 }, { limite: 78.99 }, { limite: 99.99 },
@@ -270,9 +254,6 @@ var ENVIO_ML = {
   ]
 };
 
-/* 
-   MOTOR DE CALCULO (mesma formula da calculadora antiga)
-    */
 function parseNum(v) {
   if (typeof v === "number") return v;
   var s = String(v || "").trim().replace(/[^\d.,-]/g, "");
@@ -327,7 +308,6 @@ function calcularPreco(entradas) {
   var valorLiq = entradas.valorLiq || 0;
   var pctLiq = entradas.pctLiq || 0;
 
-  // INSUMOS: soma ao CUSTO (despesa) - igual calculadora antiga
   if (CONFIG.usarInsumos) {
     custo += (pesoKg <= 0.3 ? CONFIG.insumos.ate300G : CONFIG.insumos.acima300G);
   }
@@ -378,12 +358,6 @@ function calcularPreco(entradas) {
   return resultados;
 }
 
-/* 
-   SELO DE ULTIMA ATUALIZACAO (data + hora REAIS, com timeout e cache)
-   Busca o ultimo commit na API do GitHub com limite de 8 segundos.
-   Se a API demorar ou falhar, usa o ultimo valor salvo no navegador.
-   Nunca fica preso em "Buscando ultima atualizacao...".
-    */
 (function () {
   var textEl = document.getElementById("updated-text");
   var CACHE_KEY = "ultimaAtualizacao";
@@ -402,10 +376,8 @@ function calcularPreco(entradas) {
     return false;
   }
 
-  // Mostra na hora o ultimo valor salvo (se existir)
   var exibiu = lerCache();
 
-  // Limite de 8s: se a API nao responder, aborta e cai no fallback
   var controller = window.AbortController ? new AbortController() : null;
   var timer = window.setTimeout(function () {
     if (controller) controller.abort();
@@ -501,7 +473,6 @@ function calcular() {
     if (!(custo > 0)) { fb.dataset.state = "error"; fb.textContent = "Informe um custo maior que zero."; return; }
     if (!(Manual > 0 || ValorLiq > 0 || PctLiq > 0)) { fb.dataset.state = "error"; fb.textContent = "Preencha ao menos um modo de calculo."; return; }
 
-    // Custo total com insumo (para as porcentagens - igual antiga)
     var custoTotal = custo + (CONFIG.usarInsumos ? (pesoKg <= 0.3 ? CONFIG.insumos.ate300G : CONFIG.insumos.acima300G) : 0);
 
     var linhas = document.getElementById("result-body").children;
