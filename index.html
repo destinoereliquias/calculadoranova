@@ -412,7 +412,7 @@ function calcularPreco(entradas) {
     if (!exibiu) textEl.textContent = "Ultima atualizacao: indisponivel";
   }, 8000);
 
-  fetch("https://api.github.com/repos/destinoereliquias/calculadora-nova/commits?per_page=1", controller ? { signal: controller.signal } : {})
+  fetch("https://api.github.com/repos/destinoereliquias/calculadoranova/commits?per_page=1", controller ? { signal: controller.signal } : {})
     .then(function (r) { return r.json(); })
     .then(function (data) {
       var commit = Array.isArray(data) ? data[0] : null;
