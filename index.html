@@ -5,39 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculadora de Marketplaces - Loja da Vivi</title>
 <style>
-:root{--bg:#fdf2f8;--surface:#fff;--text:#4a1d33;--muted:#a06b87;--border:#e5c9d9;--primary:#db2777;--primary-dark:#be185d;--primary-light:#fce7f3;--accent:#f472b6;--ok:#10b981;--danger:#ef4444;--shadow:0 4px 20px rgba(219,39,119,.10)}
-.dark-mode{--bg:#1c2330;--surface:#232b39;--text:#eef1f6;--muted:#9aa7bd;--border:#3d4a63;--primary:#f472b6;--primary-dark:#ec4899;--primary-light:#3a2b45;--accent:#f9a8d4;--ok:#34d399;--danger:#f87171;--shadow:0 4px 20px rgba(0,0,0,.4)}
+:root{--bg:#fdf2f8;--surface:#fff;--text:#4a1d33;--muted:#a06b87;--border:#e5c9d9;--primary:#db2777;--primary-dark:#be185d;--primary-light:#fce7f3;--accent:#f472b6;--ok:#10b981;--danger:#ef4444}
 *{box-sizing:border-box}
 body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.5}
 .wrap{max-width:1150px;margin:0 auto;padding:24px;padding-bottom:90px}
-.app-header{background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:16px;padding:28px 32px;color:#fff;display:flex;align-items:center;gap:20px;position:relative;overflow:hidden}
-.mascot{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #fff;background:#fff;flex-shrink:0;box-shadow:0 4px 14px rgba(0,0,0,.18)}
-.header-text{flex:1;position:relative;z-index:2}
+.app-header{background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:16px;padding:28px 32px;color:#fff;display:flex;align-items:center;gap:20px}
+.mascot{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #fff;background:#fff;flex-shrink:0}
+.header-text{flex:1}
 .eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:.72rem;opacity:.9;margin:0}
 .app-header h1{margin:6px 0 4px;font-size:1.7rem}
 .subtitle{margin:0;opacity:.92;font-size:.92rem}
 .updated-badge{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600}
-.updated-badge .dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.3)}
-.header-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;position:relative;z-index:2}
-.btn{padding:8px 14px;border:none;border-radius:10px;font-size:.85rem;cursor:pointer;font-weight:600;transition:transform .15s}
-.btn:hover{transform:translateY(-1px)}
+.updated-badge .dot{width:7px;height:7px;border-radius:50%;background:#4ade80}
+.header-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn{padding:8px 14px;border:none;border-radius:10px;font-size:.85rem;cursor:pointer;font-weight:600}
 .btn-ghost{background:rgba(255,255,255,.22);color:#fff}
-.panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-top:20px;box-shadow:var(--shadow)}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-top:20px}
 .panel h2{margin:0 0 4px;font-size:1.15rem}
 .panel-sub{color:var(--muted);font-size:.85rem;margin:0 0 16px}
 .controls-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
 .field{display:flex;flex-direction:column;gap:6px;font-size:.82rem;font-weight:600}
 .field input,.field select{padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font-size:.95rem;font-weight:400}
-.field input:focus,.field select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-light)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--primary)}
 .money-input-wrap{display:flex;align-items:center;gap:6px}
 .money-input-wrap span{color:var(--muted);font-weight:600}
 .calc-feedback{font-size:.85rem;color:var(--muted);margin:16px 0 0;padding:10px 14px;border-radius:8px;background:var(--bg);min-height:20px}
-.calc-feedback[data-state="success"]{color:var(--ok);background:rgba(16,185,129,.1)}
-.calc-feedback[data-state="error"]{color:var(--danger);background:rgba(239,68,68,.1)}
 .aliq-info{font-size:.85rem;color:var(--primary-dark);margin:12px 0 0;padding:10px 14px;border-radius:8px;background:var(--primary-light);font-weight:600}
 .mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 .mode-card{border:1px solid var(--border);border-radius:14px;padding:18px;background:var(--surface)}
-.mode-card h3{margin:0 0 6px;font-size:1rem;display:flex;align-items:center;gap:8px}
+.mode-card h3{margin:0 0 6px;font-size:1rem}
 .mode-card p{color:var(--muted);font-size:.82rem;margin:0 0 14px}
 .mode-badge{width:8px;height:8px;border-radius:50%;display:inline-block}
 .mode-badge.manual{background:var(--primary)}
@@ -45,26 +41,19 @@ body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);c
 .mode-badge.pct{background:#f59e0b}
 .mode-pills{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
 .mode-pill{padding:7px 16px;border-radius:999px;border:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:.8rem;font-weight:600}
-.mode-pill.on-manual{background:#fff;border-color:#fff;color:#333;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.mode-pill.on-manual{background:#fff;border-color:#fff;color:#333}
 .mode-pill.on-vl{background:#10b981;border-color:#10b981;color:#fff}
 .mode-pill.on-pct{background:#f59e0b;border-color:#f59e0b;color:#fff}
-.dark-mode .mode-pill.on-manual{background:#eef1f6;border-color:#eef1f6;color:#1c2330}
 .table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border)}
-.results-table{width:100%;border-collapse:collapse;table-layout:fixed}
-.results-table th,.results-table td{padding:10px 12px;font-size:.88rem;border:1px solid var(--border);text-align:center;overflow:hidden;text-overflow:ellipsis}
-.results-table thead th{background:var(--bg);color:var(--muted);font-weight:700;text-transform:uppercase;font-size:.7rem;letter-spacing:.5px;padding-top:13px;padding-bottom:13px}
+.results-table{width:100%;border-collapse:collapse}
+.results-table th,.results-table td{padding:10px 12px;font-size:.88rem;border:1px solid var(--border);text-align:center}
+.results-table thead th{background:var(--bg);color:var(--muted);font-weight:700;text-transform:uppercase;font-size:.7rem}
 .results-table thead th:first-child{text-align:left}
-.results-table tbody tr:nth-child(even){background:rgba(124,58,237,.03)}
-.results-table tbody tr:hover{background:var(--primary-light)}
 .results-table .marketplace-cell{font-weight:600;text-align:left;white-space:nowrap}
-.results-table .result-cell{text-align:right;font-variant-numeric:tabular-nums;font-weight:500;white-space:nowrap}
+.results-table .result-cell{text-align:right;font-weight:500;white-space:nowrap}
 .app-footer{margin-top:28px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:16px;color:var(--muted);font-size:.82rem;text-align:center;margin-bottom:70px}
-.footer-kicker{text-transform:uppercase;letter-spacing:2px;font-size:.68rem;margin:0;color:var(--primary);font-weight:600}
-.footer-title{margin:4px 0;font-weight:700;color:var(--text)}
-.footer-text{margin:0}
 .nav-bar{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:center;gap:8px;padding:10px 16px;z-index:40}
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 14px;border:none;border-radius:10px;background:transparent;color:var(--muted);font-size:.72rem;cursor:pointer;text-decoration:none}
-.nav-item:hover{background:var(--primary-light);color:var(--primary)}
 .nav-item.is-active{color:var(--primary);font-weight:600}
 .nav-item .nav-icon{font-size:1.1rem}
 </style>
@@ -72,13 +61,12 @@ body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);c
 <body>
 <div class="wrap">
   <header class="app-header">
-    <img src="mascote.jpg" alt="Mascote Loja da Vivi" class="mascot">
+    <img src="mascote.jpg" alt="Mascote" class="mascot">
     <div class="header-text">
       <p class="eyebrow">✦ Subsistema interno</p>
       <h1>Calculadora da Loja da Vivi</h1>
       <p class="subtitle">Precos consistentes para todos os marketplaces.</p>
-      <!-- >>> ATUALIZACAO: quando mudar algo, aumente o numero abaixo (135 -> 136 -> 137 ...) <<< -->
-      <span class="updated-badge"><span class="dot"></span><span id="updated-text">Atualizacao 135</span></span>
+      <span class="updated-badge"><span class="dot"></span><span>Atualizacao 135</span></span>
       <div class="header-actions">
         <button id="toggle-dark-mode" class="btn btn-ghost" type="button">Tema escuro</button>
         <button id="clear-calculation" class="btn btn-ghost" type="button">Limpar calculo</button>
@@ -169,16 +157,27 @@ body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);c
               <th>Sugestao de venda no modo Percentual liquido</th>
             </tr>
           </thead>
-          <tbody id="result-body"></tbody>
+          <tbody>
+            <tr><th class="marketplace-cell">PRESENCIAL</th><td class="result-cell" id="m-presencial">-</td><td class="result-cell" id="v-presencial">-</td><td class="result-cell" id="p-presencial">-</td></tr>
+            <tr><th class="marketplace-cell">AMAZON</th><td class="result-cell" id="m-amazon">-</td><td class="result-cell" id="v-amazon">-</td><td class="result-cell" id="p-amazon">-</td></tr>
+            <tr><th class="marketplace-cell">CASAS BAHIA</th><td class="result-cell" id="m-casasBahia">-</td><td class="result-cell" id="v-casasBahia">-</td><td class="result-cell" id="p-casasBahia">-</td></tr>
+            <tr><th class="marketplace-cell">MAGALU</th><td class="result-cell" id="m-magalu">-</td><td class="result-cell" id="v-magalu">-</td><td class="result-cell" id="p-magalu">-</td></tr>
+            <tr><th class="marketplace-cell">MERCADO LIVRE CLASSICO</th><td class="result-cell" id="m-ml-classico">-</td><td class="result-cell" id="v-ml-classico">-</td><td class="result-cell" id="p-ml-classico">-</td></tr>
+            <tr><th class="marketplace-cell">MERCADO LIVRE PREMIUM</th><td class="result-cell" id="m-ml-premium">-</td><td class="result-cell" id="v-ml-premium">-</td><td class="result-cell" id="p-ml-premium">-</td></tr>
+            <tr><th class="marketplace-cell">OLIST</th><td class="result-cell" id="m-olist">-</td><td class="result-cell" id="v-olist">-</td><td class="result-cell" id="p-olist">-</td></tr>
+            <tr><th class="marketplace-cell">RD</th><td class="result-cell" id="m-rd">-</td><td class="result-cell" id="v-rd">-</td><td class="result-cell" id="p-rd">-</td></tr>
+            <tr><th class="marketplace-cell">SHEIN</th><td class="result-cell" id="m-shein">-</td><td class="result-cell" id="v-shein">-</td><td class="result-cell" id="p-shein">-</td></tr>
+            <tr><th class="marketplace-cell">SHOPEE</th><td class="result-cell" id="m-shopee">-</td><td class="result-cell" id="v-shopee">-</td><td class="result-cell" id="p-shopee">-</td></tr>
+            <tr><th class="marketplace-cell">TEMU</th><td class="result-cell" id="m-temu">-</td><td class="result-cell" id="v-temu">-</td><td class="result-cell" id="p-temu">-</td></tr>
+            <tr><th class="marketplace-cell">TIKTOK</th><td class="result-cell" id="m-tiktok">-</td><td class="result-cell" id="v-tiktok">-</td><td class="result-cell" id="p-tiktok">-</td></tr>
+          </tbody>
         </table>
       </div>
     </section>
   </main>
 
   <footer class="app-footer">
-    <p class="footer-kicker">Subsistemas Loja da Vivi</p>
-    <p class="footer-title">Calculadora de Marketplaces</p>
-    <p class="footer-text">Operacao diaria com foco em consistencia de preco e agilidade.</p>
+    <p>Subsistemas Loja da Vivi - Calculadora de Marketplaces</p>
   </footer>
 </div>
 
@@ -190,15 +189,8 @@ body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);c
 </nav>
 
 <script>
-/* CONFIG - VALORES REAIS (fonte: planilha da calculadora antiga)
-   Aliquota por CNPJ: LTDA 10% | FERREIRA 11% | RAV 10% | VIVI 4%
-   PRESENCIAL: comissao 3,29% (custo da maquina de pagamento)
-   INSUMOS: soma R$1 (ate 300g) ou R$2 (acima) ao CUSTO (despesa)
-   Magalu: taxa R$2 quando preco ACIMA de 9,99
-   RD: frete = frete_do_peso x comissao 19%
-   ML: tabela nova do artigo oficial
-   Ordem das faixas de peso:
-   [ate300G, 300a500G, 500Ga1KG, 1a2KG, 2a5KG, 5a9KG, 9a13KG, 13a17KG, 17a23KG, 23a30KG] */
+try {
+
 var CONFIG = {
   aliq: {
     "LOJA DA VIVI LTDA": 0.10,
@@ -223,9 +215,6 @@ var CONFIG = {
   }
 };
 
-/* TABELA NOVA DO MERCADO LIVRE
-   Colunas de preco: ate 18,99 | 19-48,99 | 49-78,99 | 79-99,99 |
-   100-119,99 | 120-149,99 | 150-199,99 | 200+ */
 var ENVIO_ML = {
   faixasPreco: [
     { limite: 18.99 }, { limite: 48.99 }, { limite: 78.99 }, { limite: 99.99 },
@@ -282,10 +271,7 @@ function porFaixa(obj, preco) {
   for (var i = 0; i < ates.length; i++) {
     if (preco <= ates[i]) return obj["ate" + ates[i]];
   }
-  return obj.acima79 != null ? obj.acima79
-    : obj.acima50 != null ? obj.acima50
-    : obj.acima200 != null ? obj.acima200
-    : obj.acima10 != null ? obj.acima10 : 0;
+  return obj.acima79 != null ? obj.acima79 : obj.acima50 != null ? obj.acima50 : obj.acima200 != null ? obj.acima200 : obj.acima10 != null ? obj.acima10 : 0;
 }
 function indicePeso(pesoKg) {
   for (var i = 0; i < ENVIO_ML.faixasPeso.length; i++) {
@@ -369,41 +355,20 @@ function calcularPreco(entradas) {
   return resultados;
 }
 
-var themeBtn = document.getElementById("toggle-dark-mode");
-function applyTheme() {
-  var dark = document.documentElement.classList.toggle("dark-mode");
-  themeBtn.textContent = dark ? "Tema claro" : "Tema escuro";
-  localStorage.setItem("darkMode", dark ? "1" : "0");
-}
-if (localStorage.getItem("darkMode") === "1") document.documentElement.classList.add("dark-mode");
-themeBtn.textContent = document.documentElement.classList.contains("dark-mode") ? "Tema claro" : "Tema escuro";
-themeBtn.addEventListener("click", applyTheme);
-
 var LINHAS = [
-  ["presencial", "PRESENCIAL", "classico"],
-  ["amazon", "AMAZON", "classico"],
-  ["casasBahia", "CASAS BAHIA", "classico"],
-  ["magalu", "MAGALU", "classico"],
-  ["mercadoLivre", "MERCADO LIVRE CLASSICO", "classico"],
-  ["mercadoLivre", "MERCADO LIVRE PREMIUM", "premium"],
-  ["olist", "OLIST", "classico"],
-  ["rd", "RD", "classico"],
-  ["shein", "SHEIN", "classico"],
-  ["shopee", "SHOPEE", "classico"],
-  ["temu", "TEMU", "classico"],
-  ["tiktok", "TIKTOK", "classico"]
+  ["presencial", "PRESENCIAL", "classico", "presencial"],
+  ["amazon", "AMAZON", "classico", "amazon"],
+  ["casasBahia", "CASAS BAHIA", "classico", "casasBahia"],
+  ["magalu", "MAGALU", "classico", "magalu"],
+  ["mercadoLivre", "MERCADO LIVRE CLASSICO", "classico", "ml-classico"],
+  ["mercadoLivre", "MERCADO LIVRE PREMIUM", "premium", "ml-premium"],
+  ["olist", "OLIST", "classico", "olist"],
+  ["rd", "RD", "classico", "rd"],
+  ["shein", "SHEIN", "classico", "shein"],
+  ["shopee", "SHOPEE", "classico", "shopee"],
+  ["temu", "TEMU", "classico", "temu"],
+  ["tiktok", "TIKTOK", "classico", "tiktok"]
 ];
-
-function montarTabela() {
-  var tbody = document.getElementById("result-body");
-  tbody.innerHTML = "";
-  LINHAS.forEach(function (l) {
-    var tr = document.createElement("tr");
-    tr.innerHTML = '<th class="marketplace-cell">' + l[1] + '</th><td class="result-cell">-</td><td class="result-cell">-</td><td class="result-cell">-</td>';
-    tbody.appendChild(tr);
-  });
-}
-montarTabela();
 
 function fmt(v) { return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }); }
 function fmtPct(v) { return v.toFixed(2).replace(".", ",") + "%"; }
@@ -429,50 +394,43 @@ function calcular() {
   var fb = document.getElementById("calc-feedback");
   atualizarPills();
   atualizarAliquota();
-  try {
-    var cnpj = document.getElementById("cnpj").value;
-    var pesoKg = parseNum(document.getElementById("peso").value);
-    var custo = parseNum(document.getElementById("custo").value);
-    var nivel = parseInt(document.getElementById("nivel").value, 10) || 5;
-    var Manual = parseNum(document.getElementById("Manual").value);
-    var ValorLiq = parseNum(document.getElementById("ValorLiq").value);
-    var PctLiq = parseNum(document.getElementById("PctLiq").value);
+  var cnpj = document.getElementById("cnpj").value;
+  var pesoKg = parseNum(document.getElementById("peso").value);
+  var custo = parseNum(document.getElementById("custo").value);
+  var nivel = parseInt(document.getElementById("nivel").value, 10) || 5;
+  var Manual = parseNum(document.getElementById("Manual").value);
+  var ValorLiq = parseNum(document.getElementById("ValorLiq").value);
+  var PctLiq = parseNum(document.getElementById("PctLiq").value);
 
-    if (cnpj === "Selecione") { fb.dataset.state = "error"; fb.textContent = "Selecione o CNPJ para iniciar."; return; }
-    if (pesoKg <= 0) { fb.dataset.state = "error"; fb.textContent = "Selecione a faixa de peso do produto."; return; }
-    if (!(custo > 0)) { fb.dataset.state = "error"; fb.textContent = "Informe um custo maior que zero."; return; }
-    if (!(Manual > 0 || ValorLiq > 0 || PctLiq > 0)) { fb.dataset.state = "error"; fb.textContent = "Preencha ao menos um modo de calculo."; return; }
+  if (cnpj === "Selecione") { fb.textContent = "Selecione o CNPJ para iniciar."; return; }
+  if (pesoKg <= 0) { fb.textContent = "Selecione a faixa de peso do produto."; return; }
+  if (!(custo > 0)) { fb.textContent = "Informe um custo maior que zero."; return; }
+  if (!(Manual > 0 || ValorLiq > 0 || PctLiq > 0)) { fb.textContent = "Preencha ao menos um modo de calculo."; return; }
 
-    var custoTotal = custo + (CONFIG.usarInsumos ? (pesoKg <= 0.3 ? CONFIG.insumos.ate300G : CONFIG.insumos.acima300G) : 0);
+  var custoTotal = custo + (CONFIG.usarInsumos ? (pesoKg <= 0.3 ? CONFIG.insumos.ate300G : CONFIG.insumos.acima300G) : 0);
 
-    var linhas = document.getElementById("result-body").children;
-    LINHAS.forEach(function (l, i) {
-      var res = calcularPreco({ custo: custo, cnpj: cnpj, nivel: nivel, pesoKg: pesoKg, plano: l[2], valorManual: Manual, valorLiq: ValorLiq, pctLiq: PctLiq });
-      var r = res[l[0]];
-      var cel = linhas[i].children;
+  LINHAS.forEach(function (l) {
+    var res = calcularPreco({ custo: custo, cnpj: cnpj, nivel: nivel, pesoKg: pesoKg, plano: l[2], valorManual: Manual, valorLiq: ValorLiq, pctLiq: PctLiq });
+    var r = res[l[0]];
+    var id = l[3];
 
-      if (Manual > 0) {
-        var pct1 = custoTotal > 0 ? (r.manual / custoTotal * 100) : 0;
-        cel[1].textContent = fmt(r.manual) + " (" + fmtPct(pct1) + ")";
-      } else { cel[1].textContent = "-"; }
+    if (Manual > 0) {
+      var pct1 = custoTotal > 0 ? (r.manual / custoTotal * 100) : 0;
+      document.getElementById("m-" + id).textContent = fmt(r.manual) + " (" + fmtPct(pct1) + ")";
+    } else { document.getElementById("m-" + id).textContent = "-"; }
 
-      if (ValorLiq > 0) {
-        var pct2 = custoTotal > 0 ? (ValorLiq / custoTotal * 100) : 0;
-        cel[2].textContent = fmt(r.vliq) + " (" + fmtPct(pct2) + ")";
-      } else { cel[2].textContent = "-"; }
+    if (ValorLiq > 0) {
+      var pct2 = custoTotal > 0 ? (ValorLiq / custoTotal * 100) : 0;
+      document.getElementById("v-" + id).textContent = fmt(r.vliq) + " (" + fmtPct(pct2) + ")";
+    } else { document.getElementById("v-" + id).textContent = "-"; }
 
-      if (PctLiq > 0) {
-        var lucro = custoTotal * PctLiq / 100;
-        cel[3].textContent = fmt(r.pct) + " (" + fmt(lucro) + ")";
-      } else { cel[3].textContent = "-"; }
-    });
+    if (PctLiq > 0) {
+      var lucro = custoTotal * PctLiq / 100;
+      document.getElementById("p-" + id).textContent = fmt(r.pct) + " (" + fmt(lucro) + ")";
+    } else { document.getElementById("p-" + id).textContent = "-"; }
+  });
 
-    fb.dataset.state = "success";
-    fb.textContent = "Calculo pronto. Resultados atualizados automaticamente.";
-  } catch (e) {
-    fb.dataset.state = "error";
-    fb.textContent = "Erro no calculo: " + e.message;
-  }
+  fb.textContent = "Calculo pronto. Resultados atualizados automaticamente.";
 }
 
 ["cnpj", "peso", "custo", "nivel", "Manual", "ValorLiq", "PctLiq"].forEach(function (id) {
@@ -485,15 +443,30 @@ document.getElementById("clear-calculation").addEventListener("click", function 
   document.getElementById("cnpj").value = "Selecione";
   document.getElementById("peso").value = "Selecione";
   document.getElementById("nivel").value = "5";
-  montarTabela();
+  LINHAS.forEach(function (l) {
+    document.getElementById("m-" + l[3]).textContent = "-";
+    document.getElementById("v-" + l[3]).textContent = "-";
+    document.getElementById("p-" + l[3]).textContent = "-";
+  });
   atualizarPills();
   atualizarAliquota();
-  var fb = document.getElementById("calc-feedback");
-  fb.dataset.state = "";
-  fb.textContent = "Campos limpos. Preencha novamente para calcular.";
+  document.getElementById("calc-feedback").textContent = "Campos limpos. Preencha novamente para calcular.";
 });
+
+var themeBtn = document.getElementById("toggle-dark-mode");
+function applyTheme() {
+  var dark = document.documentElement.classList.toggle("dark-mode");
+  themeBtn.textContent = dark ? "Tema claro" : "Tema escuro";
+}
+themeBtn.addEventListener("click", applyTheme);
+
 atualizarPills();
 atualizarAliquota();
+
+} catch (e) {
+  var fb2 = document.getElementById("calc-feedback");
+  if (fb2) fb2.textContent = "Erro no script: " + e.message;
+}
 </script>
 </body>
 </html>
