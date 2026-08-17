@@ -1,490 +1,472 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2113.65">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-    span.s1 {font: 12.0px 'Zapf Dingbats'}
-    span.s2 {font: 12.0px 'Apple Color Emoji'}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Marketplaces - Loja da Vivi</title>
+<style>
+:root{--bg:#fdf2f8;--surface:#fff;--text:#4a1d33;--muted:#a06b87;--border:#e5c9d9;--primary:#db2777;--primary-dark:#be185d;--primary-light:#fce7f3;--accent:#f472b6;--ok:#10b981;--danger:#ef4444}
+*{box-sizing:border-box}
+body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.5}
+.wrap{max-width:1150px;margin:0 auto;padding:24px;padding-bottom:90px}
+.app-header{background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:16px;padding:28px 32px;color:#fff;display:flex;align-items:center;gap:20px}
+.mascot{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #fff;background:#fff;flex-shrink:0}
+.header-text{flex:1}
+.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:.72rem;opacity:.9;margin:0}
+.app-header h1{margin:6px 0 4px;font-size:1.7rem}
+.subtitle{margin:0;opacity:.92;font-size:.92rem}
+.updated-badge{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600}
+.updated-badge .dot{width:7px;height:7px;border-radius:50%;background:#4ade80}
+.header-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn{padding:8px 14px;border:none;border-radius:10px;font-size:.85rem;cursor:pointer;font-weight:600}
+.btn-ghost{background:rgba(255,255,255,.22);color:#fff}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-top:20px}
+.panel h2{margin:0 0 4px;font-size:1.15rem}
+.panel-sub{color:var(--muted);font-size:.85rem;margin:0 0 16px}
+.controls-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.field{display:flex;flex-direction:column;gap:6px;font-size:.82rem;font-weight:600}
+.field input,.field select{padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font-size:.95rem;font-weight:400}
+.field input:focus,.field select:focus{outline:none;border-color:var(--primary)}
+.money-input-wrap{display:flex;align-items:center;gap:6px}
+.money-input-wrap span{color:var(--muted);font-weight:600}
+.calc-feedback{font-size:.85rem;color:var(--muted);margin:16px 0 0;padding:10px 14px;border-radius:8px;background:var(--bg);min-height:20px}
+.aliq-info{font-size:.85rem;color:var(--primary-dark);margin:12px 0 0;padding:10px 14px;border-radius:8px;background:var(--primary-light);font-weight:600}
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.mode-card{border:1px solid var(--border);border-radius:14px;padding:18px;background:var(--surface)}
+.mode-card h3{margin:0 0 6px;font-size:1rem}
+.mode-card p{color:var(--muted);font-size:.82rem;margin:0 0 14px}
+.mode-badge{width:8px;height:8px;border-radius:50%;display:inline-block}
+.mode-badge.manual{background:var(--primary)}
+.mode-badge.vl{background:var(--ok)}
+.mode-badge.pct{background:#f59e0b}
+.mode-pills{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.mode-pill{padding:7px 16px;border-radius:999px;border:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:.8rem;font-weight:600}
+.mode-pill.on-manual{background:#fff;border-color:#fff;color:#333}
+.mode-pill.on-vl{background:#10b981;border-color:#10b981;color:#fff}
+.mode-pill.on-pct{background:#f59e0b;border-color:#f59e0b;color:#fff}
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border)}
+.results-table{width:100%;border-collapse:collapse}
+.results-table th,.results-table td{padding:10px 12px;font-size:.88rem;border:1px solid var(--border);text-align:center}
+.results-table thead th{background:var(--bg);color:var(--muted);font-weight:700;text-transform:uppercase;font-size:.7rem}
+.results-table thead th:first-child{text-align:left}
+.results-table .marketplace-cell{font-weight:600;text-align:left;white-space:nowrap}
+.results-table .result-cell{text-align:right;font-weight:500;white-space:nowrap}
+.app-footer{margin-top:28px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:16px;color:var(--muted);font-size:.82rem;text-align:center;margin-bottom:70px}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:center;gap:8px;padding:10px 16px;z-index:40}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 14px;border:none;border-radius:10px;background:transparent;color:var(--muted);font-size:.72rem;cursor:pointer;text-decoration:none}
+.nav-item.is-active{color:var(--primary);font-weight:600}
+.nav-item .nav-icon{font-size:1.1rem}
+</style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="pt-BR"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1">&lt;title&gt;Calculadora de Marketplaces - Loja da Vivi&lt;/title&gt;</p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p1">:root{--bg:#fdf2f8;--surface:#fff;--text:#4a1d33;--muted:#a06b87;--border:#e5c9d9;--primary:#db2777;--primary-dark:#be185d;--primary-light:#fce7f3;--accent:#f472b6;--ok:#10b981;--danger:#ef4444}</p>
-<p class="p1">*{box-sizing:border-box}</p>
-<p class="p1">body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.5}</p>
-<p class="p1">.wrap{max-width:1150px;margin:0 auto;padding:24px;padding-bottom:90px}</p>
-<p class="p1">.app-header{background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:16px;padding:28px 32px;color:#fff;display:flex;align-items:center;gap:20px}</p>
-<p class="p1">.mascot{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #fff;background:#fff;flex-shrink:0}</p>
-<p class="p1">.header-text{flex:1}</p>
-<p class="p1">.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:.72rem;opacity:.9;margin:0}</p>
-<p class="p1">.app-header h1{margin:6px 0 4px;font-size:1.7rem}</p>
-<p class="p1">.subtitle{margin:0;opacity:.92;font-size:.92rem}</p>
-<p class="p1">.updated-badge{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600}</p>
-<p class="p1">.updated-badge .dot{width:7px;height:7px;border-radius:50%;background:#4ade80}</p>
-<p class="p1">.header-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}</p>
-<p class="p1">.btn{padding:8px 14px;border:none;border-radius:10px;font-size:.85rem;cursor:pointer;font-weight:600}</p>
-<p class="p1">.btn-ghost{background:rgba(255,255,255,.22);color:#fff}</p>
-<p class="p1">.panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-top:20px}</p>
-<p class="p1">.panel h2{margin:0 0 4px;font-size:1.15rem}</p>
-<p class="p1">.panel-sub{color:var(--muted);font-size:.85rem;margin:0 0 16px}</p>
-<p class="p1">.controls-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}</p>
-<p class="p1">.field{display:flex;flex-direction:column;gap:6px;font-size:.82rem;font-weight:600}</p>
-<p class="p1">.field input,.field select{padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font-size:.95rem;font-weight:400}</p>
-<p class="p1">.field input:focus,.field select:focus{outline:none;border-color:var(--primary)}</p>
-<p class="p1">.money-input-wrap{display:flex;align-items:center;gap:6px}</p>
-<p class="p1">.money-input-wrap span{color:var(--muted);font-weight:600}</p>
-<p class="p1">.calc-feedback{font-size:.85rem;color:var(--muted);margin:16px 0 0;padding:10px 14px;border-radius:8px;background:var(--bg);min-height:20px}</p>
-<p class="p1">.aliq-info{font-size:.85rem;color:var(--primary-dark);margin:12px 0 0;padding:10px 14px;border-radius:8px;background:var(--primary-light);font-weight:600}</p>
-<p class="p1">.mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}</p>
-<p class="p1">.mode-card{border:1px solid var(--border);border-radius:14px;padding:18px;background:var(--surface)}</p>
-<p class="p1">.mode-card h3{margin:0 0 6px;font-size:1rem}</p>
-<p class="p1">.mode-card p{color:var(--muted);font-size:.82rem;margin:0 0 14px}</p>
-<p class="p1">.mode-badge{width:8px;height:8px;border-radius:50%;display:inline-block}</p>
-<p class="p1">.mode-badge.manual{background:var(--primary)}</p>
-<p class="p1">.mode-badge.vl{background:var(--ok)}</p>
-<p class="p1">.mode-badge.pct{background:#f59e0b}</p>
-<p class="p1">.mode-pills{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}</p>
-<p class="p1">.mode-pill{padding:7px 16px;border-radius:999px;border:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:.8rem;font-weight:600}</p>
-<p class="p1">.mode-pill.on-manual{background:#fff;border-color:#fff;color:#333}</p>
-<p class="p1">.mode-pill.on-vl{background:#10b981;border-color:#10b981;color:#fff}</p>
-<p class="p1">.mode-pill.on-pct{background:#f59e0b;border-color:#f59e0b;color:#fff}</p>
-<p class="p1">.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border)}</p>
-<p class="p1">.results-table{width:100%;border-collapse:collapse}</p>
-<p class="p1">.results-table th,.results-table td{padding:10px 12px;font-size:.88rem;border:1px solid var(--border);text-align:center}</p>
-<p class="p1">.results-table thead th{background:var(--bg);color:var(--muted);font-weight:700;text-transform:uppercase;font-size:.7rem}</p>
-<p class="p1">.results-table thead th:first-child{text-align:left}</p>
-<p class="p1">.results-table .marketplace-cell{font-weight:600;text-align:left;white-space:nowrap}</p>
-<p class="p1">.results-table .result-cell{text-align:right;font-weight:500;white-space:nowrap}</p>
-<p class="p1">.app-footer{margin-top:28px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:16px;color:var(--muted);font-size:.82rem;text-align:center;margin-bottom:70px}</p>
-<p class="p1">.nav-bar{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:center;gap:8px;padding:10px 16px;z-index:40}</p>
-<p class="p1">.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 14px;border:none;border-radius:10px;background:transparent;color:var(--muted);font-size:.72rem;cursor:pointer;text-decoration:none}</p>
-<p class="p1">.nav-item.is-active{color:var(--primary);font-weight:600}</p>
-<p class="p1">.nav-item .nav-icon{font-size:1.1rem}</p>
-<p class="p1">&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1">&lt;div class="wrap"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;header class="app-header"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;img src="mascote.jpg" alt="Mascote" class="mascot"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="header-text"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="eyebrow"&gt;<span class="s1">✦</span> Subsistema interno&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1&gt;Calculadora da Loja da Vivi&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="subtitle"&gt;Precos consistentes para todos os marketplaces.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;span class="updated-badge"&gt;&lt;span class="dot"&gt;&lt;/span&gt;&lt;span&gt;Atualizacao 135&lt;/span&gt;&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="header-actions"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="toggle-dark-mode" class="btn btn-ghost" type="button"&gt;Tema escuro&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="clear-calculation" class="btn btn-ghost" type="button"&gt;Limpar calculo&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;main&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="panel"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Parametros da operacao&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="panel-sub"&gt;Defina os dados do produto para calcular.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="controls-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="field"&gt;CNPJ</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;select id="cnpj"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Selecione"&gt;Selecione...&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option&gt;LOJA DA VIVI LTDA&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option&gt;FERREIRA PROSPERITA COSMETICOS LTDA&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option&gt;RAV SHEFA DISTRIBUIDORA DE COSMETICOS LTDA&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option&gt;VIVIANE CHRISTINA FERREIRA&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="field"&gt;Peso</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;select id="peso"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Selecione"&gt;Selecione...&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="0.3"&gt;ate 0.3kg&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="0.5"&gt;0.3 a 0.5kg&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="1"&gt;0.5 a 1kg&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="2"&gt;1 a 2kg&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="5"&gt;2 a 5kg&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="9"&gt;5 a 9kg&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="13"&gt;9 a 13kg&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="17"&gt;13 a 17kg&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="23"&gt;17 a 23kg&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="30"&gt;23 a 30kg&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="field"&gt;Custo</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;div class="money-input-wrap"&gt;&lt;span&gt;R$&lt;/span&gt;&lt;input id="custo" placeholder="0,00" inputmode="decimal"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="field"&gt;Nivel</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;select id="nivel"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="5"&gt;5&lt;/option&gt;&lt;option value="4"&gt;4&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="3"&gt;3&lt;/option&gt;&lt;option value="2"&gt;2&lt;/option&gt;&lt;option value="1"&gt;1&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p id="aliq-info" class="aliq-info"&gt;Selecione o CNPJ para ver a aliquota aplicada.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p id="calc-feedback" class="calc-feedback"&gt;Preencha os campos para iniciar.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="panel"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Modos de calculo&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="panel-sub"&gt;Escolha o modo e informe o valor.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="mode-grid"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;article class="mode-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;&lt;span class="mode-badge manual"&gt;&lt;/span&gt; Manual&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;Informe o preco de venda para ver o liquido aproximado.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;label class="field"&gt;&lt;div class="money-input-wrap"&gt;&lt;span&gt;R$&lt;/span&gt;&lt;input id="Manual" inputmode="decimal" placeholder="0,00"&gt;&lt;/div&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/article&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;article class="mode-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;&lt;span class="mode-badge vl"&gt;&lt;/span&gt; Valor liquido&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;Informe quanto quer receber para obter o preco de venda.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;label class="field"&gt;&lt;div class="money-input-wrap"&gt;&lt;span&gt;R$&lt;/span&gt;&lt;input id="ValorLiq" inputmode="decimal" placeholder="0,00"&gt;&lt;/div&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/article&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;article class="mode-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;h3&gt;&lt;span class="mode-badge pct"&gt;&lt;/span&gt; Percentual liquido&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;p&gt;Informe a margem em percentual para receber o preco sugerido.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;label class="field"&gt;&lt;div class="money-input-wrap"&gt;&lt;input id="PctLiq" inputmode="decimal" placeholder="0"&gt;&lt;span&gt;%&lt;/span&gt;&lt;/div&gt;&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/article&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="panel"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h2&gt;Resultados por marketplace&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="panel-sub"&gt;Colunas 1 e 2 mostram a % aplicada; ultima coluna mostra o valor liquido de ganho.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="mode-pills"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="mode-pill" id="pill-manual"&gt;Manual&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="mode-pill" id="pill-vl"&gt;Valor liquido&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="mode-pill" id="pill-pct"&gt;Percentual liquido&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="table-wrap"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;table class="results-table"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;th&gt;Marketplace&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;th&gt;Liquido aprox. no modo Manual&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;th&gt;Sugestao de venda no modo Valor liquido&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;th&gt;Sugestao de venda no modo Percentual liquido&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th class="marketplace-cell"&gt;PRESENCIAL&lt;/th&gt;&lt;td class="result-cell" id="m-presencial"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="v-presencial"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="p-presencial"&gt;-&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th class="marketplace-cell"&gt;AMAZON&lt;/th&gt;&lt;td class="result-cell" id="m-amazon"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="v-amazon"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="p-amazon"&gt;-&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th class="marketplace-cell"&gt;CASAS BAHIA&lt;/th&gt;&lt;td class="result-cell" id="m-casasBahia"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="v-casasBahia"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="p-casasBahia"&gt;-&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th class="marketplace-cell"&gt;MAGALU&lt;/th&gt;&lt;td class="result-cell" id="m-magalu"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="v-magalu"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="p-magalu"&gt;-&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th class="marketplace-cell"&gt;MERCADO LIVRE CLASSICO&lt;/th&gt;&lt;td class="result-cell" id="m-ml-classico"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="v-ml-classico"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="p-ml-classico"&gt;-&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th class="marketplace-cell"&gt;MERCADO LIVRE PREMIUM&lt;/th&gt;&lt;td class="result-cell" id="m-ml-premium"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="v-ml-premium"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="p-ml-premium"&gt;-&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th class="marketplace-cell"&gt;OLIST&lt;/th&gt;&lt;td class="result-cell" id="m-olist"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="v-olist"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="p-olist"&gt;-&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th class="marketplace-cell"&gt;RD&lt;/th&gt;&lt;td class="result-cell" id="m-rd"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="v-rd"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="p-rd"&gt;-&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th class="marketplace-cell"&gt;SHEIN&lt;/th&gt;&lt;td class="result-cell" id="m-shein"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="v-shein"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="p-shein"&gt;-&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th class="marketplace-cell"&gt;SHOPEE&lt;/th&gt;&lt;td class="result-cell" id="m-shopee"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="v-shopee"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="p-shopee"&gt;-&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th class="marketplace-cell"&gt;TEMU&lt;/th&gt;&lt;td class="result-cell" id="m-temu"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="v-temu"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="p-temu"&gt;-&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tr&gt;&lt;th class="marketplace-cell"&gt;TIKTOK&lt;/th&gt;&lt;td class="result-cell" id="m-tiktok"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="v-tiktok"&gt;-&lt;/td&gt;&lt;td class="result-cell" id="p-tiktok"&gt;-&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;/tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/table&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer class="app-footer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;Subsistemas Loja da Vivi - Calculadora de Marketplaces&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;nav class="nav-bar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;a class="nav-item is-active" href="index.html"&gt;&lt;span class="nav-icon"&gt;<span class="s2">🛒</span>&lt;/span&gt; Marketplace&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;a class="nav-item" href="caixa.html"&gt;&lt;span class="nav-icon"&gt;<span class="s2">💰</span>&lt;/span&gt; Caixa&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;a class="nav-item" href="etiqueta.html"&gt;&lt;span class="nav-icon"&gt;<span class="s2">🏷️</span>&lt;/span&gt; Etiqueta&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;a class="nav-item" href="danfe.html"&gt;&lt;span class="nav-icon"&gt;<span class="s2">📄</span>&lt;/span&gt; DANFE&lt;/a&gt;</p>
-<p class="p1">&lt;/nav&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1">try {</p>
-<p class="p2"><br></p>
-<p class="p1">var CONFIG = {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>aliq: {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"LOJA DA VIVI LTDA": 0.10,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"FERREIRA PROSPERITA COSMETICOS LTDA": 0.11,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"RAV SHEFA DISTRIBUIDORA DE COSMETICOS LTDA": 0.10,</p>
-<p class="p1"><span class="Apple-converted-space">    </span>"VIVIANE CHRISTINA FERREIRA": 0.04</p>
-<p class="p1"><span class="Apple-converted-space">  </span>},</p>
-<p class="p1"><span class="Apple-converted-space">  </span>insumos: { ate300G: 1, acima300G: 2 },</p>
-<p class="p1"><span class="Apple-converted-space">  </span>usarInsumos: true,</p>
-<p class="p1"><span class="Apple-converted-space">  </span>canais: {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>presencial: { comissao: 0.0329, taxa: 0, frete: 0, freteACIMA: [0,0,0,0,0,0,0,0,0,0], niveis: {1:1,2:1,3:1,4:1,5:1} },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>amazon: { comissao: 0.145, taxa: 0, freteATE: { ate30: 4.5, ate50: 6.5, ate79: 6.75 }, freteACIMA: [17.95, 19.3, 20.2, 21.1, 25.6, 41, 69.5, 83.5, 104.5, 129], niveis: {1:1,2:1,3:1,4:1,5:1} },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>casasBahia: { comissao: 0.21, taxa: 0, freteATE: { ate69: 0 }, freteACIMA: [29, 29, 32, 34, 42, 67.9, 91.9, 104.9, 112.9, 119.9], niveis: {1:1,2:1,3:1,4:0.6,5:0.5} },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>magalu: { comissao: 0.18, taxa: { ate9.99: 0, acima10: 2 }, freteATE: { ate79: 0 }, freteACIMA: [29.9, 29.9, 35.9, 38.9, 46.9, 68.9, 89.9, 102.9, 125.9, 139.9], niveis: {1:1,2:1,3:0.75,4:0.5,5:0.5} },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>mercadoLivre: { comissao: { classico: 0.14, premium: 0.19 }, taxa: 0, frete: "TABELA_NOVA", niveis: {1:1,2:1,3:0.6,4:0.5,5:0.5} },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>olist: { comissao: 0.21, taxa: 5, freteATE: { ate79: 0 }, freteACIMA: [37.9, 38.9, 42.9, 44.9, 52.9, 81.9, 127.9, 142.9, 166.9, 191.9], niveis: {1:0.8,2:0.8,3:0.6,4:0.5,5:0.5} },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>rd: { comissao: 0.19, taxa: 0, freteATE: null, freteACIMA: [40.9, 41.9, 43.9, 46.9, 51.9, 83.9, 131.9, 146.9, 171.9, 197.9], niveis: {1:1,2:1,3:1,4:1,5:1} },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>shein: { comissao: 0.16, taxa: 0, freteATE: { ate49: 0 }, freteACIMA: [4, 5, 5, 5, 15, 32, 63, 73, 89, 106], niveis: {1:1,2:1,3:1,4:1,5:1} },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>shopee: { comissao: { ate79: 0.20, acima79: 0.14 }, taxa: { ate79: 4, ate99: 16, ate199: 20, acima200: 26 }, frete: 0, niveis: {1:1,2:1,3:1,4:1,5:1} },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>temu: { comissao: 0, taxa: 0, frete: 0, niveis: {1:1,2:1,3:1,4:1,5:1} },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>tiktok: { comissao: { ate50: 0.10, acima50: 0.06 }, taxa: { ate50: 4, acima50: 6 }, frete: 0, niveis: {1:1,2:1,3:1,4:1,5:1} }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1">};</p>
-<p class="p2"><br></p>
-<p class="p1">var ENVIO_ML = {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>faixasPreco: [</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ limite: 18.99 }, { limite: 48.99 }, { limite: 78.99 }, { limite: 99.99 },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ limite: 119.99 }, { limite: 149.99 }, { limite: 199.99 }, { limite: Infinity }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>faixasPeso: [</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 0.3,<span class="Apple-converted-space">  </span>custos: [5.65, 6.85, 8.15, 12.95, 14.95, 16.95, 19.05, 21.65] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 0.5,<span class="Apple-converted-space">  </span>custos: [5.95, 6.95, 8.25, 13.85, 16.15, 18.15, 20.45, 23.25] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 1,<span class="Apple-converted-space">    </span>custos: [6.05, 7.15, 8.45, 14.45, 16.85, 19.05, 21.35, 24.45] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 1.5,<span class="Apple-converted-space">  </span>custos: [6.15, 7.35, 8.65, 14.75, 17.15, 19.45, 21.75, 25.45] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 2,<span class="Apple-converted-space">    </span>custos: [6.25, 7.45, 8.75, 15.05, 17.65, 19.85, 22.25, 25.55] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 3,<span class="Apple-converted-space">    </span>custos: [6.35, 8.65, 9.15, 16.45, 19.15, 21.65, 24.35, 27.05] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 4,<span class="Apple-converted-space">    </span>custos: [6.45, 8.75, 9.75, 17.85, 20.75, 23.35, 26.35, 29.25] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 5,<span class="Apple-converted-space">    </span>custos: [6.55, 8.85, 10.25, 19.75, 22.85, 26.05, 29.25, 32.45] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 6,<span class="Apple-converted-space">    </span>custos: [6.65, 8.95, 10.35, 25.95, 29.15, 33.35, 36.45, 40.85] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 7,<span class="Apple-converted-space">    </span>custos: [6.75, 9.05, 10.45, 27.55, 31.65, 36.75, 40.85, 45.25] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 8,<span class="Apple-converted-space">    </span>custos: [6.85, 9.25, 10.55, 29.45, 34.35, 39.25, 44.15, 49.35] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 9,<span class="Apple-converted-space">    </span>custos: [6.95, 9.35, 10.65, 30.25, 35.25, 40.35, 45.35, 50.75] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 10, <span class="Apple-converted-space">  </span>custos: [7.05, 9.45, 10.85, 38.25, 45.05, 51.95, 58.75, 65.85] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 11, <span class="Apple-converted-space">  </span>custos: [7.05, 9.65, 11.05, 41.65, 48.55, 55.45, 62.35, 69.35] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 13, <span class="Apple-converted-space">  </span>custos: [7.15, 10.05, 11.45, 42.55, 49.75, 56.85, 63.85, 70.95] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 15, <span class="Apple-converted-space">  </span>custos: [7.25, 10.25, 11.65, 45.55, 52.95, 60.55, 68.15, 75.65] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 17, <span class="Apple-converted-space">  </span>custos: [7.35, 10.45, 11.85, 48.95, 56.55, 64.05, 71.35, 79.35] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 20, <span class="Apple-converted-space">  </span>custos: [7.45, 10.65, 12.05, 55.15, 64.35, 73.55, 82.75, 91.95] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 25, <span class="Apple-converted-space">  </span>custos: [7.65, 11.05, 12.25, 64.55, 75.75, 85.45, 96.25, 106.85] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 30, <span class="Apple-converted-space">  </span>custos: [7.75, 11.25, 12.45, 66.45, 76.05, 86.25, 97.15, 107.85] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 40, <span class="Apple-converted-space">  </span>custos: [7.85, 11.45, 12.65, 68.35, 79.65, 89.75, 100.05, 107.95] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 50, <span class="Apple-converted-space">  </span>custos: [7.95, 11.65, 12.85, 70.95, 81.85, 92.85, 103.45, 111.65] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 60, <span class="Apple-converted-space">  </span>custos: [8.05, 11.85, 13.05, 75.55, 87.25, 99.05, 110.25, 119.05] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 70, <span class="Apple-converted-space">  </span>custos: [8.15, 12.05, 13.25, 80.95, 93.75, 105.95, 118.05, 127.45] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 80, <span class="Apple-converted-space">  </span>custos: [8.25, 12.25, 13.45, 84.65, 97.95, 110.75, 123.35, 133.15] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 90, <span class="Apple-converted-space">  </span>custos: [8.35, 12.45, 13.65, 94.05, 108.35, 122.95, 136.95, 147.85] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 100,<span class="Apple-converted-space">  </span>custos: [8.45, 12.65, 13.85, 107.45, 124.85, 140.45, 156.45, 168.85] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 125,<span class="Apple-converted-space">  </span>custos: [8.55, 12.85, 14.05, 120.15, 138.95, 156.95, 174.85, 188.85] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: 150,<span class="Apple-converted-space">  </span>custos: [8.65, 12.85, 14.25, 127.45, 147.05, 166.55, 185.55, 200.35] },</p>
-<p class="p1"><span class="Apple-converted-space">    </span>{ pesoMax: Infinity, custos: [8.75, 12.85, 14.45, 167.05, 193.35, 218.45, 243.45, 262.85] }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>]</p>
-<p class="p1">};</p>
-<p class="p2"><br></p>
-<p class="p1">function parseNum(v) {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (typeof v === "number") return v;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var s = String(v || "").trim().replace(/[^\d.,-]/g, "");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (s.indexOf(".") !== -1 &amp;&amp; s.indexOf(",") !== -1) s = s.replace(/\./g, "").replace(",", ".");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>else if (s.indexOf(",") !== -1) s = s.replace(",", ".");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>return parseFloat(s) || 0;</p>
-<p class="p1">}</p>
-<p class="p1">function porFaixa(obj, preco) {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (typeof obj === "number") return obj;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var ates = [];</p>
-<p class="p1"><span class="Apple-converted-space">  </span>Object.keys(obj).forEach(function (k) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (k.indexOf("ate") === 0) ates.push(parseFloat(k.replace("ate", "")));</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>ates.sort(function (a, b) { return a - b; });</p>
-<p class="p1"><span class="Apple-converted-space">  </span>for (var i = 0; i &lt; ates.length; i++) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (preco &lt;= ates[i]) return obj["ate" + ates[i]];</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>return obj.acima79 != null ? obj.acima79 : obj.acima50 != null ? obj.acima50 : obj.acima200 != null ? obj.acima200 : obj.acima10 != null ? obj.acima10 : 0;</p>
-<p class="p1">}</p>
-<p class="p1">function indicePeso(pesoKg) {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>for (var i = 0; i &lt; ENVIO_ML.faixasPeso.length; i++) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (pesoKg &lt;= ENVIO_ML.faixasPeso[i].pesoMax) return i;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>return ENVIO_ML.faixasPeso.length - 1;</p>
-<p class="p1">}</p>
-<p class="p1">function custoEnvioML(pesoKg, precoProduto) {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var linha = ENVIO_ML.faixasPeso[indicePeso(pesoKg)];</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var coluna = -1;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>for (var i = 0; i &lt; ENVIO_ML.faixasPreco.length; i++) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (precoProduto &lt;= ENVIO_ML.faixasPreco[i].limite) { coluna = i; break; }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (coluna === -1) coluna = ENVIO_ML.faixasPreco.length - 1;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>return linha.custos[coluna];</p>
-<p class="p1">}</p>
-<p class="p1">function maiorLimite(obj) {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var m = 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>Object.keys(obj).forEach(function (k) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (k.indexOf("ate") === 0) m = Math.max(m, parseFloat(k.replace("ate", "")));</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>return m || 79;</p>
-<p class="p1">}</p>
-<p class="p1">function calcularPreco(entradas) {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var custo = entradas.custo || 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var cnpj = entradas.cnpj || "";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var nivel = entradas.nivel || 5;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var pesoKg = entradas.pesoKg || 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var plano = entradas.plano || "classico";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var valorManual = entradas.valorManual || 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var valorLiq = entradas.valorLiq || 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var pctLiq = entradas.pctLiq || 0;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (CONFIG.usarInsumos) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>custo += (pesoKg &lt;= 0.3 ? CONFIG.insumos.ate300G : CONFIG.insumos.acima300G);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>var aliquota = CONFIG.aliq[cnpj] != null ? CONFIG.aliq[cnpj] : 0.10;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var idxPeso = indicePeso(pesoKg);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var resultados = {};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>Object.keys(CONFIG.canais).forEach(function (canal) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>var cfg = CONFIG.canais[canal];</p>
-<p class="p1"><span class="Apple-converted-space">    </span>var comissaoPct;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (typeof cfg.comissao === "number") comissaoPct = cfg.comissao;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>else if (cfg.comissao[plano] !== undefined) comissaoPct = cfg.comissao[plano];</p>
-<p class="p1"><span class="Apple-converted-space">    </span>else comissaoPct = porFaixa(cfg.comissao, 0);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>var denominador = 1 - (aliquota + comissaoPct);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>var constNivel = cfg.niveis[nivel] != null ? cfg.niveis[nivel] : 1;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function fretePara(preco) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (canal === "mercadoLivre") return custoEnvioML(pesoKg, preco);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (typeof cfg.frete === "number") return cfg.frete;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (canal === "presencial") return 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (canal === "rd") return (cfg.freteACIMA[idxPeso] || 0) * cfg.comissao;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (cfg.freteATE &amp;&amp; preco &lt;= maiorLimite(cfg.freteATE)) return porFaixa(cfg.freteATE, preco) * constNivel;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>return (cfg.freteACIMA[idxPeso] || 0) * constNivel;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>function taxaPara(preco) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (!cfg.taxa) return 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>return porFaixa(cfg.taxa, preco);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>var manual = null;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (valorManual &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>manual = valorManual - (custo + valorManual * (aliquota + comissaoPct) + fretePara(valorManual) + taxaPara(valorManual));</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>var vliq = null;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (valorLiq &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>vliq = (valorLiq + custo + fretePara(valorLiq) + taxaPara(valorLiq)) / denominador;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>var pct = null;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (pctLiq &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>var custoComMargem = custo * (1 + pctLiq / 100);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>pct = (custoComMargem + fretePara(custoComMargem) + taxaPara(custoComMargem)) / denominador;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>resultados[canal] = { manual: manual, vliq: vliq, pct: pct };</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>return resultados;</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">var LINHAS = [</p>
-<p class="p1"><span class="Apple-converted-space">  </span>["presencial", "PRESENCIAL", "classico", "presencial"],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>["amazon", "AMAZON", "classico", "amazon"],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>["casasBahia", "CASAS BAHIA", "classico", "casasBahia"],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>["magalu", "MAGALU", "classico", "magalu"],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>["mercadoLivre", "MERCADO LIVRE CLASSICO", "classico", "ml-classico"],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>["mercadoLivre", "MERCADO LIVRE PREMIUM", "premium", "ml-premium"],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>["olist", "OLIST", "classico", "olist"],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>["rd", "RD", "classico", "rd"],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>["shein", "SHEIN", "classico", "shein"],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>["shopee", "SHOPEE", "classico", "shopee"],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>["temu", "TEMU", "classico", "temu"],</p>
-<p class="p1"><span class="Apple-converted-space">  </span>["tiktok", "TIKTOK", "classico", "tiktok"]</p>
-<p class="p1">];</p>
-<p class="p2"><br></p>
-<p class="p1">function fmt(v) { return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }); }</p>
-<p class="p1">function fmtPct(v) { return v.toFixed(2).replace(".", ",") + "%"; }</p>
-<p class="p2"><br></p>
-<p class="p1">function atualizarPills() {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var m = parseNum(document.getElementById("Manual").value) &gt; 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var v = parseNum(document.getElementById("ValorLiq").value) &gt; 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var p = parseNum(document.getElementById("PctLiq").value) &gt; 0;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("pill-manual").className = "mode-pill" + (m ? " on-manual" : "");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("pill-vl").className = "mode-pill" + (v ? " on-vl" : "");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("pill-pct").className = "mode-pill" + (p ? " on-pct" : "");</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">function atualizarAliquota() {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var cnpj = document.getElementById("cnpj").value;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var el = document.getElementById("aliq-info");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (cnpj === "Selecione") { el.textContent = "Selecione o CNPJ para ver a aliquota aplicada."; return; }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var a = (CONFIG.aliq[cnpj] != null ? CONFIG.aliq[cnpj] : 0.10) * 100;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>el.textContent = "Aliquota aplicada: " + a.toFixed(0).replace(".", ",") + "%<span class="Apple-converted-space">  </span>(" + cnpj + ")";</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">function calcular() {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var fb = document.getElementById("calc-feedback");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>atualizarPills();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>atualizarAliquota();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var cnpj = document.getElementById("cnpj").value;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var pesoKg = parseNum(document.getElementById("peso").value);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var custo = parseNum(document.getElementById("custo").value);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var nivel = parseInt(document.getElementById("nivel").value, 10) || 5;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var Manual = parseNum(document.getElementById("Manual").value);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var ValorLiq = parseNum(document.getElementById("ValorLiq").value);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var PctLiq = parseNum(document.getElementById("PctLiq").value);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (cnpj === "Selecione") { fb.textContent = "Selecione o CNPJ para iniciar."; return; }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (pesoKg &lt;= 0) { fb.textContent = "Selecione a faixa de peso do produto."; return; }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (!(custo &gt; 0)) { fb.textContent = "Informe um custo maior que zero."; return; }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (!(Manual &gt; 0 || ValorLiq &gt; 0 || PctLiq &gt; 0)) { fb.textContent = "Preencha ao menos um modo de calculo."; return; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>var custoTotal = custo + (CONFIG.usarInsumos ? (pesoKg &lt;= 0.3 ? CONFIG.insumos.ate300G : CONFIG.insumos.acima300G) : 0);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>LINHAS.forEach(function (l) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>var res = calcularPreco({ custo: custo, cnpj: cnpj, nivel: nivel, pesoKg: pesoKg, plano: l[2], valorManual: Manual, valorLiq: ValorLiq, pctLiq: PctLiq });</p>
-<p class="p1"><span class="Apple-converted-space">    </span>var r = res[l[0]];</p>
-<p class="p1"><span class="Apple-converted-space">    </span>var id = l[3];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (Manual &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>var pct1 = custoTotal &gt; 0 ? (r.manual / custoTotal * 100) : 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById("m-" + id).textContent = fmt(r.manual) + " (" + fmtPct(pct1) + ")";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>} else { document.getElementById("m-" + id).textContent = "-"; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (ValorLiq &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>var pct2 = custoTotal &gt; 0 ? (ValorLiq / custoTotal * 100) : 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById("v-" + id).textContent = fmt(r.vliq) + " (" + fmtPct(pct2) + ")";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>} else { document.getElementById("v-" + id).textContent = "-"; }</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>if (PctLiq &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>var lucro = custoTotal * PctLiq / 100;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById("p-" + id).textContent = fmt(r.pct) + " (" + fmt(lucro) + ")";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>} else { document.getElementById("p-" + id).textContent = "-"; }</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>fb.textContent = "Calculo pronto. Resultados atualizados automaticamente.";</p>
-<p class="p1">}</p>
-<p class="p2"><br></p>
-<p class="p1">["cnpj", "peso", "custo", "nivel", "Manual", "ValorLiq", "PctLiq"].forEach(function (id) {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var el = document.getElementById(id);</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (el) el.addEventListener(id === "nivel" || id === "cnpj" || id === "peso" ? "change" : "input", calcular);</p>
-<p class="p1">});</p>
-<p class="p2"><br></p>
-<p class="p1">document.getElementById("clear-calculation").addEventListener("click", function () {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>["custo", "Manual", "ValorLiq", "PctLiq"].forEach(function (id) { document.getElementById(id).value = ""; });</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("cnpj").value = "Selecione";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("peso").value = "Selecione";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("nivel").value = "5";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>LINHAS.forEach(function (l) {</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("m-" + l[3]).textContent = "-";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("v-" + l[3]).textContent = "-";</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById("p-" + l[3]).textContent = "-";</p>
-<p class="p1"><span class="Apple-converted-space">  </span>});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>atualizarPills();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>atualizarAliquota();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById("calc-feedback").textContent = "Campos limpos. Preencha novamente para calcular.";</p>
-<p class="p1">});</p>
-<p class="p2"><br></p>
-<p class="p1">var themeBtn = document.getElementById("toggle-dark-mode");</p>
-<p class="p1">function applyTheme() {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var dark = document.documentElement.classList.toggle("dark-mode");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>themeBtn.textContent = dark ? "Tema claro" : "Tema escuro";</p>
-<p class="p1">}</p>
-<p class="p1">themeBtn.addEventListener("click", applyTheme);</p>
-<p class="p2"><br></p>
-<p class="p1">atualizarPills();</p>
-<p class="p1">atualizarAliquota();</p>
-<p class="p2"><br></p>
-<p class="p1">} catch (e) {</p>
-<p class="p1"><span class="Apple-converted-space">  </span>var fb2 = document.getElementById("calc-feedback");</p>
-<p class="p1"><span class="Apple-converted-space">  </span>if (fb2) fb2.textContent = "Erro no script: " + e.message;</p>
-<p class="p1">}</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<div class="wrap">
+  <header class="app-header">
+    <img src="mascote.jpg" alt="Mascote" class="mascot">
+    <div class="header-text">
+      <p class="eyebrow">✦ Subsistema interno</p>
+      <h1>Calculadora da Loja da Vivi</h1>
+      <p class="subtitle">Precos consistentes para todos os marketplaces.</p>
+      <span class="updated-badge"><span class="dot"></span><span>Atualizacao 135</span></span>
+      <div class="header-actions">
+        <button id="toggle-dark-mode" class="btn btn-ghost" type="button">Tema escuro</button>
+        <button id="clear-calculation" class="btn btn-ghost" type="button">Limpar calculo</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Parametros da operacao</h2>
+      <p class="panel-sub">Defina os dados do produto para calcular.</p>
+      <div class="controls-grid">
+        <label class="field">CNPJ
+          <select id="cnpj">
+            <option value="Selecione">Selecione...</option>
+            <option>LOJA DA VIVI LTDA</option>
+            <option>FERREIRA PROSPERITA COSMETICOS LTDA</option>
+            <option>RAV SHEFA DISTRIBUIDORA DE COSMETICOS LTDA</option>
+            <option>VIVIANE CHRISTINA FERREIRA</option>
+          </select>
+        </label>
+        <label class="field">Peso
+          <select id="peso">
+            <option value="Selecione">Selecione...</option>
+            <option value="0.3">ate 0.3kg</option>
+            <option value="0.5">0.3 a 0.5kg</option>
+            <option value="1">0.5 a 1kg</option>
+            <option value="2">1 a 2kg</option>
+            <option value="5">2 a 5kg</option>
+            <option value="9">5 a 9kg</option>
+            <option value="13">9 a 13kg</option>
+            <option value="17">13 a 17kg</option>
+            <option value="23">17 a 23kg</option>
+            <option value="30">23 a 30kg</option>
+          </select>
+        </label>
+        <label class="field">Custo
+          <div class="money-input-wrap"><span>R$</span><input id="custo" placeholder="0,00" inputmode="decimal"></div>
+        </label>
+        <label class="field">Nivel
+          <select id="nivel">
+            <option value="5">5</option><option value="4">4</option>
+            <option value="3">3</option><option value="2">2</option><option value="1">1</option>
+          </select>
+        </label>
+      </div>
+      <p id="aliq-info" class="aliq-info">Selecione o CNPJ para ver a aliquota aplicada.</p>
+      <p id="calc-feedback" class="calc-feedback">Preencha os campos para iniciar.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Modos de calculo</h2>
+      <p class="panel-sub">Escolha o modo e informe o valor.</p>
+      <div class="mode-grid">
+        <article class="mode-card">
+          <h3><span class="mode-badge manual"></span> Manual</h3>
+          <p>Informe o preco de venda para ver o liquido aproximado.</p>
+          <label class="field"><div class="money-input-wrap"><span>R$</span><input id="Manual" inputmode="decimal" placeholder="0,00"></div></label>
+        </article>
+        <article class="mode-card">
+          <h3><span class="mode-badge vl"></span> Valor liquido</h3>
+          <p>Informe quanto quer receber para obter o preco de venda.</p>
+          <label class="field"><div class="money-input-wrap"><span>R$</span><input id="ValorLiq" inputmode="decimal" placeholder="0,00"></div></label>
+        </article>
+        <article class="mode-card">
+          <h3><span class="mode-badge pct"></span> Percentual liquido</h3>
+          <p>Informe a margem em percentual para receber o preco sugerido.</p>
+          <label class="field"><div class="money-input-wrap"><input id="PctLiq" inputmode="decimal" placeholder="0"><span>%</span></div></label>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Resultados por marketplace</h2>
+      <p class="panel-sub">Colunas 1 e 2 mostram a % aplicada; ultima coluna mostra o valor liquido de ganho.</p>
+      <div class="mode-pills">
+        <span class="mode-pill" id="pill-manual">Manual</span>
+        <span class="mode-pill" id="pill-vl">Valor liquido</span>
+        <span class="mode-pill" id="pill-pct">Percentual liquido</span>
+      </div>
+      <div class="table-wrap">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>Marketplace</th>
+              <th>Liquido aprox. no modo Manual</th>
+              <th>Sugestao de venda no modo Valor liquido</th>
+              <th>Sugestao de venda no modo Percentual liquido</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th class="marketplace-cell">PRESENCIAL</th><td class="result-cell" id="m-presencial">-</td><td class="result-cell" id="v-presencial">-</td><td class="result-cell" id="p-presencial">-</td></tr>
+            <tr><th class="marketplace-cell">AMAZON</th><td class="result-cell" id="m-amazon">-</td><td class="result-cell" id="v-amazon">-</td><td class="result-cell" id="p-amazon">-</td></tr>
+            <tr><th class="marketplace-cell">CASAS BAHIA</th><td class="result-cell" id="m-casasBahia">-</td><td class="result-cell" id="v-casasBahia">-</td><td class="result-cell" id="p-casasBahia">-</td></tr>
+            <tr><th class="marketplace-cell">MAGALU</th><td class="result-cell" id="m-magalu">-</td><td class="result-cell" id="v-magalu">-</td><td class="result-cell" id="p-magalu">-</td></tr>
+            <tr><th class="marketplace-cell">MERCADO LIVRE CLASSICO</th><td class="result-cell" id="m-ml-classico">-</td><td class="result-cell" id="v-ml-classico">-</td><td class="result-cell" id="p-ml-classico">-</td></tr>
+            <tr><th class="marketplace-cell">MERCADO LIVRE PREMIUM</th><td class="result-cell" id="m-ml-premium">-</td><td class="result-cell" id="v-ml-premium">-</td><td class="result-cell" id="p-ml-premium">-</td></tr>
+            <tr><th class="marketplace-cell">OLIST</th><td class="result-cell" id="m-olist">-</td><td class="result-cell" id="v-olist">-</td><td class="result-cell" id="p-olist">-</td></tr>
+            <tr><th class="marketplace-cell">RD</th><td class="result-cell" id="m-rd">-</td><td class="result-cell" id="v-rd">-</td><td class="result-cell" id="p-rd">-</td></tr>
+            <tr><th class="marketplace-cell">SHEIN</th><td class="result-cell" id="m-shein">-</td><td class="result-cell" id="v-shein">-</td><td class="result-cell" id="p-shein">-</td></tr>
+            <tr><th class="marketplace-cell">SHOPEE</th><td class="result-cell" id="m-shopee">-</td><td class="result-cell" id="v-shopee">-</td><td class="result-cell" id="p-shopee">-</td></tr>
+            <tr><th class="marketplace-cell">TEMU</th><td class="result-cell" id="m-temu">-</td><td class="result-cell" id="v-temu">-</td><td class="result-cell" id="p-temu">-</td></tr>
+            <tr><th class="marketplace-cell">TIKTOK</th><td class="result-cell" id="m-tiktok">-</td><td class="result-cell" id="v-tiktok">-</td><td class="result-cell" id="p-tiktok">-</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Subsistemas Loja da Vivi - Calculadora de Marketplaces</p>
+  </footer>
+</div>
+
+<nav class="nav-bar">
+  <a class="nav-item is-active" href="index.html"><span class="nav-icon">🛒</span> Marketplace</a>
+  <a class="nav-item" href="caixa.html"><span class="nav-icon">💰</span> Caixa</a>
+  <a class="nav-item" href="etiqueta.html"><span class="nav-icon">🏷️</span> Etiqueta</a>
+  <a class="nav-item" href="danfe.html"><span class="nav-icon">📄</span> DANFE</a>
+</nav>
+
+<script>
+try {
+
+var CONFIG = {
+  aliq: {
+    "LOJA DA VIVI LTDA": 0.10,
+    "FERREIRA PROSPERITA COSMETICOS LTDA": 0.11,
+    "RAV SHEFA DISTRIBUIDORA DE COSMETICOS LTDA": 0.10,
+    "VIVIANE CHRISTINA FERREIRA": 0.04
+  },
+  insumos: { ate300G: 1, acima300G: 2 },
+  usarInsumos: true,
+  canais: {
+    presencial: { comissao: 0.0329, taxa: 0, frete: 0, freteACIMA: [0,0,0,0,0,0,0,0,0,0], niveis: {1:1,2:1,3:1,4:1,5:1} },
+    amazon: { comissao: 0.145, taxa: 0, freteATE: { ate30: 4.5, ate50: 6.5, ate79: 6.75 }, freteACIMA: [17.95, 19.3, 20.2, 21.1, 25.6, 41, 69.5, 83.5, 104.5, 129], niveis: {1:1,2:1,3:1,4:1,5:1} },
+    casasBahia: { comissao: 0.21, taxa: 0, freteATE: { ate69: 0 }, freteACIMA: [29, 29, 32, 34, 42, 67.9, 91.9, 104.9, 112.9, 119.9], niveis: {1:1,2:1,3:1,4:0.6,5:0.5} },
+    magalu: { comissao: 0.18, taxa: { ate9.99: 0, acima10: 2 }, freteATE: { ate79: 0 }, freteACIMA: [29.9, 29.9, 35.9, 38.9, 46.9, 68.9, 89.9, 102.9, 125.9, 139.9], niveis: {1:1,2:1,3:0.75,4:0.5,5:0.5} },
+    mercadoLivre: { comissao: { classico: 0.14, premium: 0.19 }, taxa: 0, frete: "TABELA_NOVA", niveis: {1:1,2:1,3:0.6,4:0.5,5:0.5} },
+    olist: { comissao: 0.21, taxa: 5, freteATE: { ate79: 0 }, freteACIMA: [37.9, 38.9, 42.9, 44.9, 52.9, 81.9, 127.9, 142.9, 166.9, 191.9], niveis: {1:0.8,2:0.8,3:0.6,4:0.5,5:0.5} },
+    rd: { comissao: 0.19, taxa: 0, freteATE: null, freteACIMA: [40.9, 41.9, 43.9, 46.9, 51.9, 83.9, 131.9, 146.9, 171.9, 197.9], niveis: {1:1,2:1,3:1,4:1,5:1} },
+    shein: { comissao: 0.16, taxa: 0, freteATE: { ate49: 0 }, freteACIMA: [4, 5, 5, 5, 15, 32, 63, 73, 89, 106], niveis: {1:1,2:1,3:1,4:1,5:1} },
+    shopee: { comissao: { ate79: 0.20, acima79: 0.14 }, taxa: { ate79: 4, ate99: 16, ate199: 20, acima200: 26 }, frete: 0, niveis: {1:1,2:1,3:1,4:1,5:1} },
+    temu: { comissao: 0, taxa: 0, frete: 0, niveis: {1:1,2:1,3:1,4:1,5:1} },
+    tiktok: { comissao: { ate50: 0.10, acima50: 0.06 }, taxa: { ate50: 4, acima50: 6 }, frete: 0, niveis: {1:1,2:1,3:1,4:1,5:1} }
+  }
+};
+
+var ENVIO_ML = {
+  faixasPreco: [
+    { limite: 18.99 }, { limite: 48.99 }, { limite: 78.99 }, { limite: 99.99 },
+    { limite: 119.99 }, { limite: 149.99 }, { limite: 199.99 }, { limite: Infinity }
+  ],
+  faixasPeso: [
+    { pesoMax: 0.3,  custos: [5.65, 6.85, 8.15, 12.95, 14.95, 16.95, 19.05, 21.65] },
+    { pesoMax: 0.5,  custos: [5.95, 6.95, 8.25, 13.85, 16.15, 18.15, 20.45, 23.25] },
+    { pesoMax: 1,    custos: [6.05, 7.15, 8.45, 14.45, 16.85, 19.05, 21.35, 24.45] },
+    { pesoMax: 1.5,  custos: [6.15, 7.35, 8.65, 14.75, 17.15, 19.45, 21.75, 25.45] },
+    { pesoMax: 2,    custos: [6.25, 7.45, 8.75, 15.05, 17.65, 19.85, 22.25, 25.55] },
+    { pesoMax: 3,    custos: [6.35, 8.65, 9.15, 16.45, 19.15, 21.65, 24.35, 27.05] },
+    { pesoMax: 4,    custos: [6.45, 8.75, 9.75, 17.85, 20.75, 23.35, 26.35, 29.25] },
+    { pesoMax: 5,    custos: [6.55, 8.85, 10.25, 19.75, 22.85, 26.05, 29.25, 32.45] },
+    { pesoMax: 6,    custos: [6.65, 8.95, 10.35, 25.95, 29.15, 33.35, 36.45, 40.85] },
+    { pesoMax: 7,    custos: [6.75, 9.05, 10.45, 27.55, 31.65, 36.75, 40.85, 45.25] },
+    { pesoMax: 8,    custos: [6.85, 9.25, 10.55, 29.45, 34.35, 39.25, 44.15, 49.35] },
+    { pesoMax: 9,    custos: [6.95, 9.35, 10.65, 30.25, 35.25, 40.35, 45.35, 50.75] },
+    { pesoMax: 10,   custos: [7.05, 9.45, 10.85, 38.25, 45.05, 51.95, 58.75, 65.85] },
+    { pesoMax: 11,   custos: [7.05, 9.65, 11.05, 41.65, 48.55, 55.45, 62.35, 69.35] },
+    { pesoMax: 13,   custos: [7.15, 10.05, 11.45, 42.55, 49.75, 56.85, 63.85, 70.95] },
+    { pesoMax: 15,   custos: [7.25, 10.25, 11.65, 45.55, 52.95, 60.55, 68.15, 75.65] },
+    { pesoMax: 17,   custos: [7.35, 10.45, 11.85, 48.95, 56.55, 64.05, 71.35, 79.35] },
+    { pesoMax: 20,   custos: [7.45, 10.65, 12.05, 55.15, 64.35, 73.55, 82.75, 91.95] },
+    { pesoMax: 25,   custos: [7.65, 11.05, 12.25, 64.55, 75.75, 85.45, 96.25, 106.85] },
+    { pesoMax: 30,   custos: [7.75, 11.25, 12.45, 66.45, 76.05, 86.25, 97.15, 107.85] },
+    { pesoMax: 40,   custos: [7.85, 11.45, 12.65, 68.35, 79.65, 89.75, 100.05, 107.95] },
+    { pesoMax: 50,   custos: [7.95, 11.65, 12.85, 70.95, 81.85, 92.85, 103.45, 111.65] },
+    { pesoMax: 60,   custos: [8.05, 11.85, 13.05, 75.55, 87.25, 99.05, 110.25, 119.05] },
+    { pesoMax: 70,   custos: [8.15, 12.05, 13.25, 80.95, 93.75, 105.95, 118.05, 127.45] },
+    { pesoMax: 80,   custos: [8.25, 12.25, 13.45, 84.65, 97.95, 110.75, 123.35, 133.15] },
+    { pesoMax: 90,   custos: [8.35, 12.45, 13.65, 94.05, 108.35, 122.95, 136.95, 147.85] },
+    { pesoMax: 100,  custos: [8.45, 12.65, 13.85, 107.45, 124.85, 140.45, 156.45, 168.85] },
+    { pesoMax: 125,  custos: [8.55, 12.85, 14.05, 120.15, 138.95, 156.95, 174.85, 188.85] },
+    { pesoMax: 150,  custos: [8.65, 12.85, 14.25, 127.45, 147.05, 166.55, 185.55, 200.35] },
+    { pesoMax: Infinity, custos: [8.75, 12.85, 14.45, 167.05, 193.35, 218.45, 243.45, 262.85] }
+  ]
+};
+
+function parseNum(v) {
+  if (typeof v === "number") return v;
+  var s = String(v || "").trim().replace(/[^\d.,-]/g, "");
+  if (s.indexOf(".") !== -1 && s.indexOf(",") !== -1) s = s.replace(/\./g, "").replace(",", ".");
+  else if (s.indexOf(",") !== -1) s = s.replace(",", ".");
+  return parseFloat(s) || 0;
+}
+function porFaixa(obj, preco) {
+  if (typeof obj === "number") return obj;
+  var ates = [];
+  Object.keys(obj).forEach(function (k) {
+    if (k.indexOf("ate") === 0) ates.push(parseFloat(k.replace("ate", "")));
+  });
+  ates.sort(function (a, b) { return a - b; });
+  for (var i = 0; i < ates.length; i++) {
+    if (preco <= ates[i]) return obj["ate" + ates[i]];
+  }
+  return obj.acima79 != null ? obj.acima79 : obj.acima50 != null ? obj.acima50 : obj.acima200 != null ? obj.acima200 : obj.acima10 != null ? obj.acima10 : 0;
+}
+function indicePeso(pesoKg) {
+  for (var i = 0; i < ENVIO_ML.faixasPeso.length; i++) {
+    if (pesoKg <= ENVIO_ML.faixasPeso[i].pesoMax) return i;
+  }
+  return ENVIO_ML.faixasPeso.length - 1;
+}
+function custoEnvioML(pesoKg, precoProduto) {
+  var linha = ENVIO_ML.faixasPeso[indicePeso(pesoKg)];
+  var coluna = -1;
+  for (var i = 0; i < ENVIO_ML.faixasPreco.length; i++) {
+    if (precoProduto <= ENVIO_ML.faixasPreco[i].limite) { coluna = i; break; }
+  }
+  if (coluna === -1) coluna = ENVIO_ML.faixasPreco.length - 1;
+  return linha.custos[coluna];
+}
+function maiorLimite(obj) {
+  var m = 0;
+  Object.keys(obj).forEach(function (k) {
+    if (k.indexOf("ate") === 0) m = Math.max(m, parseFloat(k.replace("ate", "")));
+  });
+  return m || 79;
+}
+function calcularPreco(entradas) {
+  var custo = entradas.custo || 0;
+  var cnpj = entradas.cnpj || "";
+  var nivel = entradas.nivel || 5;
+  var pesoKg = entradas.pesoKg || 0;
+  var plano = entradas.plano || "classico";
+  var valorManual = entradas.valorManual || 0;
+  var valorLiq = entradas.valorLiq || 0;
+  var pctLiq = entradas.pctLiq || 0;
+
+  if (CONFIG.usarInsumos) {
+    custo += (pesoKg <= 0.3 ? CONFIG.insumos.ate300G : CONFIG.insumos.acima300G);
+  }
+
+  var aliquota = CONFIG.aliq[cnpj] != null ? CONFIG.aliq[cnpj] : 0.10;
+  var idxPeso = indicePeso(pesoKg);
+  var resultados = {};
+
+  Object.keys(CONFIG.canais).forEach(function (canal) {
+    var cfg = CONFIG.canais[canal];
+    var comissaoPct;
+    if (typeof cfg.comissao === "number") comissaoPct = cfg.comissao;
+    else if (cfg.comissao[plano] !== undefined) comissaoPct = cfg.comissao[plano];
+    else comissaoPct = porFaixa(cfg.comissao, 0);
+
+    var denominador = 1 - (aliquota + comissaoPct);
+    var constNivel = cfg.niveis[nivel] != null ? cfg.niveis[nivel] : 1;
+
+    function fretePara(preco) {
+      if (canal === "mercadoLivre") return custoEnvioML(pesoKg, preco);
+      if (typeof cfg.frete === "number") return cfg.frete;
+      if (canal === "presencial") return 0;
+      if (canal === "rd") return (cfg.freteACIMA[idxPeso] || 0) * cfg.comissao;
+      if (cfg.freteATE && preco <= maiorLimite(cfg.freteATE)) return porFaixa(cfg.freteATE, preco) * constNivel;
+      return (cfg.freteACIMA[idxPeso] || 0) * constNivel;
+    }
+    function taxaPara(preco) {
+      if (!cfg.taxa) return 0;
+      return porFaixa(cfg.taxa, preco);
+    }
+
+    var manual = null;
+    if (valorManual > 0) {
+      manual = valorManual - (custo + valorManual * (aliquota + comissaoPct) + fretePara(valorManual) + taxaPara(valorManual));
+    }
+    var vliq = null;
+    if (valorLiq > 0) {
+      vliq = (valorLiq + custo + fretePara(valorLiq) + taxaPara(valorLiq)) / denominador;
+    }
+    var pct = null;
+    if (pctLiq > 0) {
+      var custoComMargem = custo * (1 + pctLiq / 100);
+      pct = (custoComMargem + fretePara(custoComMargem) + taxaPara(custoComMargem)) / denominador;
+    }
+    resultados[canal] = { manual: manual, vliq: vliq, pct: pct };
+  });
+
+  return resultados;
+}
+
+var LINHAS = [
+  ["presencial", "PRESENCIAL", "classico", "presencial"],
+  ["amazon", "AMAZON", "classico", "amazon"],
+  ["casasBahia", "CASAS BAHIA", "classico", "casasBahia"],
+  ["magalu", "MAGALU", "classico", "magalu"],
+  ["mercadoLivre", "MERCADO LIVRE CLASSICO", "classico", "ml-classico"],
+  ["mercadoLivre", "MERCADO LIVRE PREMIUM", "premium", "ml-premium"],
+  ["olist", "OLIST", "classico", "olist"],
+  ["rd", "RD", "classico", "rd"],
+  ["shein", "SHEIN", "classico", "shein"],
+  ["shopee", "SHOPEE", "classico", "shopee"],
+  ["temu", "TEMU", "classico", "temu"],
+  ["tiktok", "TIKTOK", "classico", "tiktok"]
+];
+
+function fmt(v) { return v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }); }
+function fmtPct(v) { return v.toFixed(2).replace(".", ",") + "%"; }
+
+function atualizarPills() {
+  var m = parseNum(document.getElementById("Manual").value) > 0;
+  var v = parseNum(document.getElementById("ValorLiq").value) > 0;
+  var p = parseNum(document.getElementById("PctLiq").value) > 0;
+  document.getElementById("pill-manual").className = "mode-pill" + (m ? " on-manual" : "");
+  document.getElementById("pill-vl").className = "mode-pill" + (v ? " on-vl" : "");
+  document.getElementById("pill-pct").className = "mode-pill" + (p ? " on-pct" : "");
+}
+
+function atualizarAliquota() {
+  var cnpj = document.getElementById("cnpj").value;
+  var el = document.getElementById("aliq-info");
+  if (cnpj === "Selecione") { el.textContent = "Selecione o CNPJ para ver a aliquota aplicada."; return; }
+  var a = (CONFIG.aliq[cnpj] != null ? CONFIG.aliq[cnpj] : 0.10) * 100;
+  el.textContent = "Aliquota aplicada: " + a.toFixed(0).replace(".", ",") + "%  (" + cnpj + ")";
+}
+
+function calcular() {
+  var fb = document.getElementById("calc-feedback");
+  atualizarPills();
+  atualizarAliquota();
+  var cnpj = document.getElementById("cnpj").value;
+  var pesoKg = parseNum(document.getElementById("peso").value);
+  var custo = parseNum(document.getElementById("custo").value);
+  var nivel = parseInt(document.getElementById("nivel").value, 10) || 5;
+  var Manual = parseNum(document.getElementById("Manual").value);
+  var ValorLiq = parseNum(document.getElementById("ValorLiq").value);
+  var PctLiq = parseNum(document.getElementById("PctLiq").value);
+
+  if (cnpj === "Selecione") { fb.textContent = "Selecione o CNPJ para iniciar."; return; }
+  if (pesoKg <= 0) { fb.textContent = "Selecione a faixa de peso do produto."; return; }
+  if (!(custo > 0)) { fb.textContent = "Informe um custo maior que zero."; return; }
+  if (!(Manual > 0 || ValorLiq > 0 || PctLiq > 0)) { fb.textContent = "Preencha ao menos um modo de calculo."; return; }
+
+  var custoTotal = custo + (CONFIG.usarInsumos ? (pesoKg <= 0.3 ? CONFIG.insumos.ate300G : CONFIG.insumos.acima300G) : 0);
+
+  LINHAS.forEach(function (l) {
+    var res = calcularPreco({ custo: custo, cnpj: cnpj, nivel: nivel, pesoKg: pesoKg, plano: l[2], valorManual: Manual, valorLiq: ValorLiq, pctLiq: PctLiq });
+    var r = res[l[0]];
+    var id = l[3];
+
+    if (Manual > 0) {
+      var pct1 = custoTotal > 0 ? (r.manual / custoTotal * 100) : 0;
+      document.getElementById("m-" + id).textContent = fmt(r.manual) + " (" + fmtPct(pct1) + ")";
+    } else { document.getElementById("m-" + id).textContent = "-"; }
+
+    if (ValorLiq > 0) {
+      var pct2 = custoTotal > 0 ? (ValorLiq / custoTotal * 100) : 0;
+      document.getElementById("v-" + id).textContent = fmt(r.vliq) + " (" + fmtPct(pct2) + ")";
+    } else { document.getElementById("v-" + id).textContent = "-"; }
+
+    if (PctLiq > 0) {
+      var lucro = custoTotal * PctLiq / 100;
+      document.getElementById("p-" + id).textContent = fmt(r.pct) + " (" + fmt(lucro) + ")";
+    } else { document.getElementById("p-" + id).textContent = "-"; }
+  });
+
+  fb.textContent = "Calculo pronto. Resultados atualizados automaticamente.";
+}
+
+["cnpj", "peso", "custo", "nivel", "Manual", "ValorLiq", "PctLiq"].forEach(function (id) {
+  var el = document.getElementById(id);
+  if (el) el.addEventListener(id === "nivel" || id === "cnpj" || id === "peso" ? "change" : "input", calcular);
+});
+
+document.getElementById("clear-calculation").addEventListener("click", function () {
+  ["custo", "Manual", "ValorLiq", "PctLiq"].forEach(function (id) { document.getElementById(id).value = ""; });
+  document.getElementById("cnpj").value = "Selecione";
+  document.getElementById("peso").value = "Selecione";
+  document.getElementById("nivel").value = "5";
+  LINHAS.forEach(function (l) {
+    document.getElementById("m-" + l[3]).textContent = "-";
+    document.getElementById("v-" + l[3]).textContent = "-";
+    document.getElementById("p-" + l[3]).textContent = "-";
+  });
+  atualizarPills();
+  atualizarAliquota();
+  document.getElementById("calc-feedback").textContent = "Campos limpos. Preencha novamente para calcular.";
+});
+
+var themeBtn = document.getElementById("toggle-dark-mode");
+function applyTheme() {
+  var dark = document.documentElement.classList.toggle("dark-mode");
+  themeBtn.textContent = dark ? "Tema claro" : "Tema escuro";
+}
+themeBtn.addEventListener("click", applyTheme);
+
+atualizarPills();
+atualizarAliquota();
+
+} catch (e) {
+  var fb2 = document.getElementById("calc-feedback");
+  if (fb2) fb2.textContent = "Erro no script: " + e.message;
+}
+</script>
 </body>
 </html>
