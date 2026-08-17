@@ -287,8 +287,8 @@ function porFaixa(obj, preco) {
     if (k.indexOf("ate") === 0) ates.push(parseFloat(k.replace("ate", "")));
   });
   ates.sort(function (a, b) { return a - b; });
-  for (var i = 0; i &lt; ates.length; i++) {
-    if (preco &lt;= ates[i]) return obj["ate" + ates[i]];
+  for (var i = 0; i < ates.length; i++) {
+    if (preco <= ates[i]) return obj["ate" + ates[i]];
   }
   return obj.acima79 != null ? obj.acima79
     : obj.acima50 != null ? obj.acima50
@@ -296,16 +296,16 @@ function porFaixa(obj, preco) {
     : obj.acima10 != null ? obj.acima10 : 0;
 }
 function indicePeso(pesoKg) {
-  for (var i = 0; i &lt; ENVIO_ML.faixasPeso.length; i++) {
-    if (pesoKg &lt;= ENVIO_ML.faixasPeso[i].pesoMax) return i;
+  for (var i = 0; i < ENVIO_ML.faixasPeso.length; i++) {
+    if (pesoKg <= ENVIO_ML.faixasPeso[i].pesoMax) return i;
   }
   return ENVIO_ML.faixasPeso.length - 1;
 }
 function custoEnvioML(pesoKg, precoProduto) {
   var linha = ENVIO_ML.faixasPeso[indicePeso(pesoKg)];
   var coluna = -1;
-  for (var i = 0; i &lt; ENVIO_ML.faixasPreco.length; i++) {
-    if (precoProduto &lt;= ENVIO_ML.faixasPreco[i].limite) { coluna = i; break; }
+  for (var i = 0; i < ENVIO_ML.faixasPreco.length; i++) {
+    if (precoProduto <= ENVIO_ML.faixasPreco[i].limite) { coluna = i; break; }
   }
   if (coluna === -1) coluna = ENVIO_ML.faixasPreco.length - 1;
   return linha.custos[coluna];
@@ -329,7 +329,7 @@ function calcularPreco(entradas) {
 
   // INSUMOS: soma ao CUSTO (despesa) - igual calculadora antiga
   if (CONFIG.usarInsumos) {
-    custo += (pesoKg &lt;= 0.3 ? CONFIG.insumos.ate300G : CONFIG.insumos.acima300G);
+    custo += (pesoKg <= 0.3 ? CONFIG.insumos.ate300G : CONFIG.insumos.acima300G);
   }
 
   var aliquota = CONFIG.aliq[cnpj] != null ? CONFIG.aliq[cnpj] : 0.10;
@@ -351,7 +351,7 @@ function calcularPreco(entradas) {
       if (typeof cfg.frete === "number") return cfg.frete;
       if (canal === "presencial") return 0;
       if (canal === "rd") return (cfg.freteACIMA[idxPeso] || 0) * cfg.comissao;
-      if (cfg.freteATE && preco &lt;= maiorLimite(cfg.freteATE)) return porFaixa(cfg.freteATE, preco) * constNivel;
+      if (cfg.freteATE && preco <= maiorLimite(cfg.freteATE)) return porFaixa(cfg.freteATE, preco) * constNivel;
       return (cfg.freteACIMA[idxPeso] || 0) * constNivel;
     }
     function taxaPara(preco) {
@@ -497,12 +497,12 @@ function calcular() {
     var PctLiq = parseNum(document.getElementById("PctLiq").value);
 
     if (cnpj === "Selecione") { fb.dataset.state = "error"; fb.textContent = "Selecione o CNPJ para iniciar."; return; }
-    if (pesoKg &lt;= 0) { fb.dataset.state = "error"; fb.textContent = "Selecione a faixa de peso do produto."; return; }
+    if (pesoKg <= 0) { fb.dataset.state = "error"; fb.textContent = "Selecione a faixa de peso do produto."; return; }
     if (!(custo > 0)) { fb.dataset.state = "error"; fb.textContent = "Informe um custo maior que zero."; return; }
     if (!(Manual > 0 || ValorLiq > 0 || PctLiq > 0)) { fb.dataset.state = "error"; fb.textContent = "Preencha ao menos um modo de calculo."; return; }
 
     // Custo total com insumo (para as porcentagens - igual antiga)
-    var custoTotal = custo + (CONFIG.usarInsumos ? (pesoKg &lt;= 0.3 ? CONFIG.insumos.ate300G : CONFIG.insumos.acima300G) : 0);
+    var custoTotal = custo + (CONFIG.usarInsumos ? (pesoKg <= 0.3 ? CONFIG.insumos.ate300G : CONFIG.insumos.acima300G) : 0);
 
     var linhas = document.getElementById("result-body").children;
     LINHAS.forEach(function (l, i) {
