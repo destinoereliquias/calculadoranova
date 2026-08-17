@@ -11,24 +11,23 @@
 body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);color:var(--text);line-height:1.5}
 .wrap{max-width:1150px;margin:0 auto;padding:24px;padding-bottom:90px}
 .app-header{background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:16px;padding:28px 32px;color:#fff;display:flex;align-items:center;gap:20px;position:relative;overflow:hidden}
-.app-header::after{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;background:rgba(255,255,255,.12);border-radius:50%}
 .mascot{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid #fff;background:#fff;flex-shrink:0;box-shadow:0 4px 14px rgba(0,0,0,.18)}
 .header-text{flex:1;position:relative;z-index:2}
 .eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:.72rem;opacity:.9;margin:0}
 .app-header h1{margin:6px 0 4px;font-size:1.7rem}
 .subtitle{margin:0;opacity:.92;font-size:.92rem}
-.updated-badge{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600;backdrop-filter:blur(4px)}
+.updated-badge{display:inline-flex;align-items:center;gap:6px;margin-top:12px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600}
 .updated-badge .dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.3)}
 .header-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;position:relative;z-index:2}
 .btn{padding:8px 14px;border:none;border-radius:10px;font-size:.85rem;cursor:pointer;font-weight:600;transition:transform .15s}
 .btn:hover{transform:translateY(-1px)}
-.btn-ghost{background:rgba(255,255,255,.22);color:#fff;backdrop-filter:blur(4px)}
+.btn-ghost{background:rgba(255,255,255,.22);color:#fff}
 .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-top:20px;box-shadow:var(--shadow)}
 .panel h2{margin:0 0 4px;font-size:1.15rem}
 .panel-sub{color:var(--muted);font-size:.85rem;margin:0 0 16px}
 .controls-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
 .field{display:flex;flex-direction:column;gap:6px;font-size:.82rem;font-weight:600}
-.field input,.field select{padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font-size:.95rem;font-weight:400;transition:border-color .15s,box-shadow .15s}
+.field input,.field select{padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font-size:.95rem;font-weight:400}
 .field input:focus,.field select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-light)}
 .money-input-wrap{display:flex;align-items:center;gap:6px}
 .money-input-wrap span{color:var(--muted);font-weight:600}
@@ -37,8 +36,7 @@ body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);c
 .calc-feedback[data-state="error"]{color:var(--danger);background:rgba(239,68,68,.1)}
 .aliq-info{font-size:.85rem;color:var(--primary-dark);margin:12px 0 0;padding:10px 14px;border-radius:8px;background:var(--primary-light);font-weight:600}
 .mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.mode-card{border:1px solid var(--border);border-radius:14px;padding:18px;background:var(--surface);transition:box-shadow .2s,transform .2s}
-.mode-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.mode-card{border:1px solid var(--border);border-radius:14px;padding:18px;background:var(--surface)}
 .mode-card h3{margin:0 0 6px;font-size:1rem;display:flex;align-items:center;gap:8px}
 .mode-card p{color:var(--muted);font-size:.82rem;margin:0 0 14px}
 .mode-badge{width:8px;height:8px;border-radius:50%;display:inline-block}
@@ -46,7 +44,7 @@ body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);c
 .mode-badge.vl{background:var(--ok)}
 .mode-badge.pct{background:#f59e0b}
 .mode-pills{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.mode-pill{padding:7px 16px;border-radius:999px;border:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:.8rem;font-weight:600;transition:all .15s}
+.mode-pill{padding:7px 16px;border-radius:999px;border:1px solid var(--border);background:var(--bg);color:var(--muted);font-size:.8rem;font-weight:600}
 .mode-pill.on-manual{background:#fff;border-color:#fff;color:#333;box-shadow:0 1px 4px rgba(0,0,0,.15)}
 .mode-pill.on-vl{background:#10b981;border-color:#10b981;color:#fff}
 .mode-pill.on-pct{background:#f59e0b;border-color:#f59e0b;color:#fff}
@@ -64,8 +62,8 @@ body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);c
 .footer-kicker{text-transform:uppercase;letter-spacing:2px;font-size:.68rem;margin:0;color:var(--primary);font-weight:600}
 .footer-title{margin:4px 0;font-weight:700;color:var(--text)}
 .footer-text{margin:0}
-.nav-bar{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:center;gap:8px;padding:10px 16px;z-index:40;box-shadow:0 -2px 10px rgba(0,0,0,.05)}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 14px;border:none;border-radius:10px;background:transparent;color:var(--muted);font-size:.72rem;cursor:pointer;text-decoration:none;transition:background .15s,color .15s}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:center;gap:8px;padding:10px 16px;z-index:40}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 14px;border:none;border-radius:10px;background:transparent;color:var(--muted);font-size:.72rem;cursor:pointer;text-decoration:none}
 .nav-item:hover{background:var(--primary-light);color:var(--primary)}
 .nav-item.is-active{color:var(--primary);font-weight:600}
 .nav-item .nav-icon{font-size:1.1rem}
@@ -79,7 +77,8 @@ body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);c
       <p class="eyebrow">✦ Subsistema interno</p>
       <h1>Calculadora da Loja da Vivi</h1>
       <p class="subtitle">Precos consistentes para todos os marketplaces.</p>
-      <span class="updated-badge"><span class="dot"></span><span id="updated-text">Buscando ultima atualizacao...</span></span>
+      <!-- >>> ATUALIZACAO: quando mudar algo, aumente o numero abaixo (135 -> 136 -> 137 ...) <<< -->
+      <span class="updated-badge"><span class="dot"></span><span id="updated-text">Atualizacao 135</span></span>
       <div class="header-actions">
         <button id="toggle-dark-mode" class="btn btn-ghost" type="button">Tema escuro</button>
         <button id="clear-calculation" class="btn btn-ghost" type="button">Limpar calculo</button>
@@ -191,6 +190,15 @@ body{font-family:"Segoe UI",system-ui,sans-serif;margin:0;background:var(--bg);c
 </nav>
 
 <script>
+/* CONFIG - VALORES REAIS (fonte: planilha da calculadora antiga)
+   Aliquota por CNPJ: LTDA 10% | FERREIRA 11% | RAV 10% | VIVI 4%
+   PRESENCIAL: comissao 3,29% (custo da maquina de pagamento)
+   INSUMOS: soma R$1 (ate 300g) ou R$2 (acima) ao CUSTO (despesa)
+   Magalu: taxa R$2 quando preco ACIMA de 9,99
+   RD: frete = frete_do_peso x comissao 19%
+   ML: tabela nova do artigo oficial
+   Ordem das faixas de peso:
+   [ate300G, 300a500G, 500Ga1KG, 1a2KG, 2a5KG, 5a9KG, 9a13KG, 13a17KG, 17a23KG, 23a30KG] */
 var CONFIG = {
   aliq: {
     "LOJA DA VIVI LTDA": 0.10,
@@ -215,6 +223,9 @@ var CONFIG = {
   }
 };
 
+/* TABELA NOVA DO MERCADO LIVRE
+   Colunas de preco: ate 18,99 | 19-48,99 | 49-78,99 | 79-99,99 |
+   100-119,99 | 120-149,99 | 150-199,99 | 200+ */
 var ENVIO_ML = {
   faixasPreco: [
     { limite: 18.99 }, { limite: 48.99 }, { limite: 78.99 }, { limite: 99.99 },
@@ -358,47 +369,6 @@ function calcularPreco(entradas) {
   return resultados;
 }
 
-(function () {
-  var textEl = document.getElementById("updated-text");
-  var CACHE_KEY = "ultimaAtualizacao";
-
-  function mostrar(iso) {
-    var d = new Date(iso);
-    if (isNaN(d.getTime())) return false;
-    textEl.textContent = "Ultima atualizacao: " + d.toLocaleDateString("pt-BR") + " as " + d.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
-    return true;
-  }
-  function lerCache() {
-    try {
-      var obj = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
-      if (obj && obj.iso && mostrar(obj.iso)) return true;
-    } catch (e) {}
-    return false;
-  }
-
-  var exibiu = lerCache();
-
-  var controller = window.AbortController ? new AbortController() : null;
-  var timer = window.setTimeout(function () {
-    if (controller) controller.abort();
-    if (!exibiu) textEl.textContent = "Ultima atualizacao: indisponivel";
-  }, 8000);
-
-  fetch("https://api.github.com/repos/destinoereliquias/calculadoranova/commits?per_page=1", controller ? { signal: controller.signal } : {})
-    .then(function (r) { return r.json(); })
-    .then(function (data) {
-      var commit = Array.isArray(data) ? data[0] : null;
-      if (!commit || !commit.commit) throw new Error("sem dados");
-      var iso = commit.commit.committer.date;
-      mostrar(iso);
-      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), iso: iso })); } catch (e) {}
-    })
-    .catch(function () {
-      if (!exibiu) textEl.textContent = "Ultima atualizacao: indisponivel";
-    })
-    .then(function () { window.clearTimeout(timer); });
-})();
-
 var themeBtn = document.getElementById("toggle-dark-mode");
 function applyTheme() {
   var dark = document.documentElement.classList.toggle("dark-mode");
@@ -429,7 +399,7 @@ function montarTabela() {
   tbody.innerHTML = "";
   LINHAS.forEach(function (l) {
     var tr = document.createElement("tr");
-    tr.innerHTML = '<th class="marketplace-cell">' + l[1] + '</th><td class="result-cell">—</td><td class="result-cell">—</td><td class="result-cell">—</td>';
+    tr.innerHTML = '<th class="marketplace-cell">' + l[1] + '</th><td class="result-cell">-</td><td class="result-cell">-</td><td class="result-cell">-</td>';
     tbody.appendChild(tr);
   });
 }
@@ -484,17 +454,17 @@ function calcular() {
       if (Manual > 0) {
         var pct1 = custoTotal > 0 ? (r.manual / custoTotal * 100) : 0;
         cel[1].textContent = fmt(r.manual) + " (" + fmtPct(pct1) + ")";
-      } else { cel[1].textContent = "—"; }
+      } else { cel[1].textContent = "-"; }
 
       if (ValorLiq > 0) {
         var pct2 = custoTotal > 0 ? (ValorLiq / custoTotal * 100) : 0;
         cel[2].textContent = fmt(r.vliq) + " (" + fmtPct(pct2) + ")";
-      } else { cel[2].textContent = "—"; }
+      } else { cel[2].textContent = "-"; }
 
       if (PctLiq > 0) {
         var lucro = custoTotal * PctLiq / 100;
         cel[3].textContent = fmt(r.pct) + " (" + fmt(lucro) + ")";
-      } else { cel[3].textContent = "—"; }
+      } else { cel[3].textContent = "-"; }
     });
 
     fb.dataset.state = "success";
