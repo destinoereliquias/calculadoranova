@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Teste JS</title>
+</head>
+<body>
+<h1>Teste de JavaScript</h1>
+<select id="cnpj" onchange="mostrar()">
+  <option value="Selecione">Selecione...</option>
+  <option>EME</option>
+  <option>LOJA DA VIVI LTDA</option>
+</select>
+<p id="saida">Escolha um CNPJ.</p>
+<script>
+function mostrar(){
+  var v = document.getElementById("cnpj").value;
+  var aliq = (v === "EME") ? "10%" : "10%";
+  document.getElementById("saida").textContent = "Aliquota: " + aliq + " (" + v + ")";
+}
+</script>
+</body>
+</html>
